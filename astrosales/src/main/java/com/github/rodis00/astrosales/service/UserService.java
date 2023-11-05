@@ -63,4 +63,10 @@ public class UserService implements UserServiceInterface{
             userRepository.delete(user);
         return user;
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = userRepository.getByEmail(email);
+        return user;
+    }
 }
