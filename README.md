@@ -1,2 +1,2 @@
-# astrosales
-AstroSales - Application for selling space tickets
+# AstroSales
+Application for selling space tickets
