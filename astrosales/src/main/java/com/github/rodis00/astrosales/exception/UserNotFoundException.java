@@ -7,7 +7,7 @@ public class UserNotFoundException extends RuntimeException{
     private Map<String, String> errorDetail = new HashMap<>();
     public UserNotFoundException(Integer id) {
         this.errorDetail.put(
-                "message", "User with id ${id} not found."
+                "message", "User with id: " + id + " not found."
         );
     }
     public Map<String, String> getErrorDetail() {

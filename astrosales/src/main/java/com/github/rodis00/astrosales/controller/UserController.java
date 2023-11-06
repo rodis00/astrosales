@@ -1,6 +1,7 @@
 package com.github.rodis00.astrosales.controller;
 
 import com.github.rodis00.astrosales.dto.UserDto;
+import com.github.rodis00.astrosales.exception.UserNotFoundException;
 import com.github.rodis00.astrosales.exception.UserWithThisEmailExistException;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
@@ -54,5 +55,18 @@ public class UserController {
                         .map(UserDto::from)
                         .toList()
                 );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Integer id) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(UserDto.from(userService.getUserById(id)));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
     }
 }
