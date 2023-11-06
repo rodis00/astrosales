@@ -69,4 +69,9 @@ public class UserService implements UserServiceInterface{
         User user = userRepository.getByEmail(email);
         return user;
     }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

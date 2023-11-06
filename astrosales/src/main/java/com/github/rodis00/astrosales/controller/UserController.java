@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("")
     public ResponseEntity<?> addUser(@RequestBody User user) {
-        if(userService.getUserByEmail(user.getEmail()) == null)
+        if(!userService.existsByEmail(user.getEmail()))
         {
             UserProfile newUserProfile = new UserProfile();
             User newUser = userService.saveUser(user);

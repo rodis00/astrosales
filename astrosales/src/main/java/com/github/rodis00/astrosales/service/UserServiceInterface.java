@@ -12,4 +12,5 @@ public interface UserServiceInterface {
     User patchUpdateUser(Integer id, User user);
     User deleteUser(Integer id);
     User getUserByEmail(String email);
+    Boolean existsByEmail(String email);
 }
