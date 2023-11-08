@@ -49,11 +49,11 @@ public class UserProfileService implements UserProfileServiceInterface{
     public UserProfile patchUpdateUserProfile(Integer id, UserProfile userProfile) {
         UserProfile oldUserProfile = getUserProfileById(id);
         if (userProfile != null) {
-            if (!userProfile.getFirstName().equals(""))
+            if (userProfile.getFirstName() != null)
                 oldUserProfile.setFirstName(userProfile.getFirstName());
-            if (!userProfile.getLastName().equals(""))
+            if (userProfile.getLastName() != null)
                 oldUserProfile.setLastName(userProfile.getLastName());
-            if (!userProfile.getPhoneNumber().equals(""))
+            if (userProfile.getPhoneNumber() != null)
                 oldUserProfile.setPhoneNumber(userProfile.getPhoneNumber());
             userProfileRepository.save(oldUserProfile);
         }
