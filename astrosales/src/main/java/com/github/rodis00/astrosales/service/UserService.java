@@ -47,9 +47,9 @@ public class UserService implements UserServiceInterface{
     public User patchUpdateUser(Integer id, User user) {
         User oldUser = getUserById(id);
         if (oldUser != null) {
-            if (!user.getEmail().equals(""))
+            if (user.getEmail() != null)
                 oldUser.setEmail(user.getEmail());
-            if (!user.getPassword().equals(""))
+            if (user.getPassword() != null)
                 oldUser.setPassword(user.getPassword());
             userRepository.save(oldUser);
         }

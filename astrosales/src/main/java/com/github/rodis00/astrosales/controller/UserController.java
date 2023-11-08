@@ -82,6 +82,19 @@ public class UserController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchUpdateUser(@PathVariable Integer id, @RequestBody User user) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(UserDto.from(userService.patchUpdateUser(id, user)));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try {
