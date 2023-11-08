@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/v1/users")
 public class UserController {
     private final UserService userService;
     private final UserProfileService userProfileService;
+
     @Autowired
     public UserController(UserService userService, UserProfileService userProfileService) {
         this.userService = userService;
@@ -27,8 +28,7 @@ public class UserController {
 
     @PostMapping("")
     public ResponseEntity<?> addUser(@RequestBody User user) {
-        if(!userService.existsByEmail(user.getEmail()))
-        {
+        if (!userService.existsByEmail(user.getEmail())) {
             UserProfile newUserProfile = new UserProfile();
             User newUser = userService.saveUser(user);
             newUser.setUserProfile(newUserProfile);
@@ -38,8 +38,7 @@ public class UserController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(UserDto.from(user));
-        }
-        else {
+        } else {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(new UserWithThisEmailExistException().getErrorDetail());
@@ -63,6 +62,32 @@ public class UserController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(UserDto.from(userService.getUserById(id)));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody User user) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(UserDto.from(userService.updateUser(id, user)));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(UserDto.from(userService.deleteUser(id)));
         } catch (UserNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
