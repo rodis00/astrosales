@@ -6,6 +6,8 @@ import com.github.rodis00.astrosales.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReservationService implements ReservationServiceInterface {
     private final ReservationRepository reservationRepository;
@@ -16,8 +18,8 @@ public class ReservationService implements ReservationServiceInterface {
     }
 
     @Override
-    public Reservation saveReservation(Reservation reservation) {
-        return reservationRepository.save(reservation);
+    public List<Reservation> saveReservations(List<Reservation> reservations) {
+        return reservationRepository.saveAll(reservations);
     }
 
     @Override

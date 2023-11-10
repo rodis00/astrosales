@@ -1,10 +1,11 @@
 package com.github.rodis00.astrosales.model;
 
-import com.github.rodis00.astrosales.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,12 +15,15 @@ public class Transaction {
     @GeneratedValue
     private int id;
     private LocalDateTime dateOfTransaction;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserDto userDto;
-    @OneToMany
+    private User user;
+    @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
     private int amountOfTickets;
     private int amountOfTicketsVip;
+    @OneToMany
+    @JoinColumn(name = "transaction_id")
+    private List<Reservation> reservations = new ArrayList<>();
 }

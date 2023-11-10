@@ -2,8 +2,10 @@ package com.github.rodis00.astrosales.service;
 
 import com.github.rodis00.astrosales.model.Reservation;
 
+import java.util.List;
+
 public interface ReservationServiceInterface {
-    Reservation saveReservation(Reservation reservation);
+    List<Reservation> saveReservations(List<Reservation> reservations);
     Reservation getReservationById(Integer id);
     Reservation deleteReservation(Integer id);
 }
