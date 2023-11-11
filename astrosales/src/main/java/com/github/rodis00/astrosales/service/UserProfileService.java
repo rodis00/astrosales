@@ -59,11 +59,4 @@ public class UserProfileService implements UserProfileServiceInterface{
         }
         return oldUserProfile;
     }
-
-    @Override
-    public UserProfile deleteUserProfile(Integer id) {
-        UserProfile userProfile = getUserProfileById(id);
-        userProfileRepository.delete(userProfile);
-        return userProfile;
-    }
 }

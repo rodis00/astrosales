@@ -10,5 +10,4 @@ public interface UserProfileServiceInterface {
     List<UserProfile> getUsersProfile(Integer id);
     UserProfile updateUserProfile(Integer id, UserProfile userProfile);
     UserProfile patchUpdateUserProfile(Integer id, UserProfile userProfile);
-    UserProfile deleteUserProfile(Integer id);
 }
