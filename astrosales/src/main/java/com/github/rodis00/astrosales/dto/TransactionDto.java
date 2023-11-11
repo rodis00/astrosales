@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class TransactionDto {
-    private int id;
+    private Integer id;
     private LocalDateTime dateOfTransaction;
     private UserDto userDto;
     private Flight flight;

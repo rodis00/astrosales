@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Flight {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private LocalDateTime dateOfFlight;
     private String startingPlace;
     private String landingPlace;

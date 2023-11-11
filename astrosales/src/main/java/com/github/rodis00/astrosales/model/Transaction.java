@@ -13,7 +13,7 @@ import java.util.List;
 public class Transaction {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private LocalDateTime dateOfTransaction;
     @ManyToOne
     @JoinColumn(name = "user_id")

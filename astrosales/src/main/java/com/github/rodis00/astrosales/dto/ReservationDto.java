@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReservationDto {
-    private int id;
+    private Integer id;
     private Sector sector;
     private int place;
 

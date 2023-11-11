@@ -9,7 +9,7 @@ import lombok.Data;
 public class Reservation {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Enumerated(EnumType.STRING)
     private Sector sector;
     private int place;
