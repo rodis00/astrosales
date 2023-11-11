@@ -9,11 +9,14 @@ import lombok.Data;
 public class User {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column(unique = true)
     private String email;
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;
 }
