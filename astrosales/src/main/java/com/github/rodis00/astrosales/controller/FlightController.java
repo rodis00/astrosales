@@ -24,7 +24,7 @@ public class FlightController {
     @PostMapping("")
     public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(flightService.saveFlight(flight));
     }
 
