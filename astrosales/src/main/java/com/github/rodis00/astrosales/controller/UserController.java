@@ -29,15 +29,17 @@ public class UserController {
     @PostMapping("")
     public ResponseEntity<?> addUser(@RequestBody User user) {
         if (!userService.existsByEmail(user.getEmail())) {
-            UserProfile newUserProfile = new UserProfile();
-            User newUser = userService.saveUser(user);
-            newUser.setUserProfile(newUserProfile);
-            userProfileService.saveUserProfile(newUserProfile);
+            User newUser = new User();
+            newUser.setEmail(user.getEmail());
+            newUser.setPassword(user.getPassword());
+
+            UserProfile userProfile = new UserProfile();
+            newUser.setUserProfile(userProfile);
             userService.saveUser(newUser);
 
             return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(UserDto.from(user));
+                    .status(HttpStatus.CREATED)
+                    .body(UserDto.from(newUser));
         } else {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
