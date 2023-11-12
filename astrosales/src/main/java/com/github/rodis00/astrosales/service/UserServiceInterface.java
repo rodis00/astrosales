@@ -10,7 +10,7 @@ public interface UserServiceInterface {
     List<User> getUsers();
     User updateUser(Integer id, User user);
     User patchUpdateUser(Integer id, User user);
-    User deleteUser(Integer id);
+    void deleteUser(Integer id);
     User getUserByEmail(String email);
     Boolean existsByEmail(String email);
 }

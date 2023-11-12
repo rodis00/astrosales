@@ -100,9 +100,10 @@ public class UserController {
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try {
+            userService.deleteUser(id);
             return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(UserDto.from(userService.deleteUser(id)));
+                    .status(HttpStatus.NO_CONTENT)
+                    .build();
         } catch (UserNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
