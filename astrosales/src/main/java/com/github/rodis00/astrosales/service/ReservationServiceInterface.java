@@ -7,5 +7,5 @@ import java.util.List;
 public interface ReservationServiceInterface {
     List<Reservation> saveReservations(List<Reservation> reservations);
     Reservation getReservationById(Integer id);
-    Reservation deleteReservation(Integer id);
+    void deleteReservation(Integer id);
 }

@@ -29,10 +29,9 @@ public class ReservationService implements ReservationServiceInterface {
     }
 
     @Override
-    public Reservation deleteReservation(Integer id) {
+    public void deleteReservation(Integer id) {
         Reservation reservation = getReservationById(id);
         if (reservation != null)
             reservationRepository.delete(reservation);
-        return reservation;
     }
 }
