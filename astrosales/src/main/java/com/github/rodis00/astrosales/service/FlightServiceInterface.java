@@ -9,5 +9,5 @@ public interface FlightServiceInterface {
     Flight getFlightById(Integer id);
     List<Flight> getAllFlights();
     Flight updateFlight(Integer id, Flight flight);
-    Flight deleteFlight(Integer id);
+    void deleteFlight(Integer id);
 }

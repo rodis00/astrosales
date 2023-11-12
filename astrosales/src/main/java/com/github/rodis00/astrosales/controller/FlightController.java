@@ -49,7 +49,7 @@ public class FlightController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateFligt(@PathVariable Integer id, @RequestBody Flight flight) {
+    public ResponseEntity<?> updateFlight(@PathVariable Integer id, @RequestBody Flight flight) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
@@ -64,9 +64,10 @@ public class FlightController {
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteFlight(@PathVariable Integer id) {
         try {
+            flightService.deleteFlight(id);
             return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(flightService.deleteFlight(id));
+                    .status(HttpStatus.NO_CONTENT)
+                    .build();
         } catch (FlightNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)

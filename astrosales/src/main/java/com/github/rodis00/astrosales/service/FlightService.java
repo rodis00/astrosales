@@ -50,10 +50,9 @@ public class FlightService implements FlightServiceInterface {
     }
 
     @Override
-    public Flight deleteFlight(Integer id) {
+    public void deleteFlight(Integer id) {
         Flight flight = getFlightById(id);
         if (flight != null)
             flightRepository.delete(flight);
-        return flight;
     }
 }
