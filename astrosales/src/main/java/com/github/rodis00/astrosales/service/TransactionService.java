@@ -27,6 +27,11 @@ public class TransactionService implements TransactionServiceInterface {
     }
 
     @Override
+    public Transaction getTransactionByUserId(Integer id) {
+        return transactionRepository.findByUserId(id);
+    }
+
+    @Override
     public void deleteTransaction(Integer id) {
         Transaction transaction = getTransactionById(id);
         if (transaction != null)

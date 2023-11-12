@@ -22,7 +22,9 @@ public class TransactionDto {
         TransactionDto transactionDto = new TransactionDto();
         transactionDto.setId(transaction.getId());
         transactionDto.setDateOfTransaction(transaction.getDateOfTransaction());
-        transactionDto.setUserDto(UserDto.from(transaction.getUser()));
+        transactionDto.setUserDto(
+                transaction.getUser() == null ? null : UserDto.from(transaction.getUser())
+        );
         transactionDto.setFlight(transaction.getFlight());
         transactionDto.setAmountOfTickets(transaction.getAmountOfTickets());
         transactionDto.setAmountOfTicketsVip(transaction.getAmountOfTicketsVip());

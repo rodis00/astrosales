@@ -3,8 +3,10 @@ package com.github.rodis00.astrosales.controller;
 import com.github.rodis00.astrosales.dto.UserDto;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
 import com.github.rodis00.astrosales.exception.UserWithThisEmailExistException;
+import com.github.rodis00.astrosales.model.Transaction;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
+import com.github.rodis00.astrosales.service.TransactionService;
 import com.github.rodis00.astrosales.service.UserProfileService;
 import com.github.rodis00.astrosales.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,15 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final UserProfileService userProfileService;
+    private final TransactionService transactionService;
 
     @Autowired
-    public UserController(UserService userService, UserProfileService userProfileService) {
+    public UserController(UserService userService,
+                          UserProfileService userProfileService,
+                          TransactionService transactionService) {
         this.userService = userService;
         this.userProfileService = userProfileService;
+        this.transactionService = transactionService;
     }
 
     @PostMapping("")
@@ -100,6 +106,11 @@ public class UserController {
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try {
+            Transaction transaction = transactionService.getTransactionByUserId(id);
+            if (transaction != null) {
+                transaction.setUser(null);
+                transactionService.saveTransaction(transaction);
+            }
             userService.deleteUser(id);
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
