@@ -7,7 +7,6 @@ import com.github.rodis00.astrosales.model.Transaction;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
 import com.github.rodis00.astrosales.service.TransactionService;
-import com.github.rodis00.astrosales.service.UserProfileService;
 import com.github.rodis00.astrosales.service.UserService;
 import com.github.rodis00.astrosales.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;

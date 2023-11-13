@@ -8,7 +8,6 @@ import com.github.rodis00.astrosales.model.Transaction;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
 import com.github.rodis00.astrosales.service.FlightService;
-import com.github.rodis00.astrosales.service.ReservationService;
 import com.github.rodis00.astrosales.service.TransactionService;
 import com.github.rodis00.astrosales.service.UserService;
 import com.github.rodis00.astrosales.utils.UserProfileUtils;
@@ -20,19 +19,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/transactions")
 public class TransactionController {
-    private final ReservationService reservationService;
     private final TransactionService transactionService;
     private final UserService userService;
     private final FlightService flightService;
 
     @Autowired
     public TransactionController(
-            ReservationService reservationService,
             TransactionService transactionService,
             UserService userService,
             FlightService flightService
     ) {
-        this.reservationService = reservationService;
         this.transactionService = transactionService;
         this.userService = userService;
         this.flightService = flightService;
@@ -48,14 +44,13 @@ public class TransactionController {
                 return ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body(TransactionDto.from(newTransaction));
-            }
-            else {
-                ApiResponseDto response = new ApiResponseDto();
-                response.setResponseCode(UserProfileUtils.USER_PROFILE_EMPTY_CODE);
-                response.setResponseMessage(UserProfileUtils.USER_PROFILE_EMPTY_MESSAGE);
+            } else {
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
-                        .body(response);
+                        .body(new ApiResponseDto(
+                                UserProfileUtils.USER_PROFILE_EMPTY_CODE,
+                                UserProfileUtils.USER_PROFILE_EMPTY_MESSAGE
+                        ));
             }
         } catch (UserNotFoundException e) {
             return ResponseEntity
@@ -84,10 +79,8 @@ public class TransactionController {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(
-                            TransactionDto
-                                    .from(transactionService.getTransactionById(id))
-                    );
+                    .body(TransactionDto
+                            .from(transactionService.getTransactionById(id)));
         } catch (TransactionNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
