@@ -6,6 +6,8 @@ import com.github.rodis00.astrosales.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransactionService implements TransactionServiceInterface {
     private final TransactionRepository transactionRepository;
@@ -29,6 +31,11 @@ public class TransactionService implements TransactionServiceInterface {
     @Override
     public Transaction getTransactionByUserId(Integer id) {
         return transactionRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Integer> getTransactionsByFlightId(Integer id) {
+        return transactionRepository.findIdByFlightId(id);
     }
 
     @Override
