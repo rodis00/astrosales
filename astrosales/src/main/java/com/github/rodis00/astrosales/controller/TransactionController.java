@@ -4,17 +4,23 @@ import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.TransactionDto;
 import com.github.rodis00.astrosales.exception.TransactionNotFoundException;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
+import com.github.rodis00.astrosales.model.Reservation;
 import com.github.rodis00.astrosales.model.Transaction;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
 import com.github.rodis00.astrosales.service.FlightService;
+import com.github.rodis00.astrosales.service.ReservationService;
 import com.github.rodis00.astrosales.service.TransactionService;
 import com.github.rodis00.astrosales.service.UserService;
+import com.github.rodis00.astrosales.utils.FlightUtils;
 import com.github.rodis00.astrosales.utils.UserProfileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/transactions")
@@ -22,16 +28,18 @@ public class TransactionController {
     private final TransactionService transactionService;
     private final UserService userService;
     private final FlightService flightService;
+    private final ReservationService reservationService;
 
     @Autowired
     public TransactionController(
             TransactionService transactionService,
             UserService userService,
-            FlightService flightService
-    ) {
+            FlightService flightService,
+            ReservationService reservationService) {
         this.transactionService = transactionService;
         this.userService = userService;
         this.flightService = flightService;
+        this.reservationService = reservationService;
     }
 
     @PostMapping("")
@@ -40,10 +48,19 @@ public class TransactionController {
             User user = userService.getUserById(transaction.getUser().getId());
             if (user != null && userProfileIsNotEmpty(user.getUserProfile())) {
                 Transaction newTransaction = buildTransactionFromRequest(transaction);
-                transactionService.saveTransaction(newTransaction);
-                return ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(TransactionDto.from(newTransaction));
+                if (!isEnoughPlaces(newTransaction)) {
+                    return ResponseEntity
+                            .status(HttpStatus.BAD_REQUEST)
+                            .body(new ApiResponseDto(
+                                    FlightUtils.NO_AVAILABLE_PLACES_CODE,
+                                    FlightUtils.NO_AVAILABLE_PLACES_MESSAGE
+                            ));
+                } else {
+                    transactionService.saveTransaction(newTransaction);
+                    return ResponseEntity
+                            .status(HttpStatus.CREATED)
+                            .body(TransactionDto.from(newTransaction));
+                }
             } else {
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
@@ -63,14 +80,48 @@ public class TransactionController {
         return userProfile.getFirstName() != null && userProfile.getLastName() != null;
     }
 
+    private boolean isEnoughPlaces(Transaction transaction) {
+        List<Integer> transactionsList =
+                transactionService.getTransactionsByFlightId(transaction.getFlight().getId());
+        if (transactionsList.isEmpty())
+            return true;
+        else {
+            int transactionTicketsCount =
+                    getTransactionTicketsCount(transaction.getAmountOfTickets(), transaction.getAmountOfTicketsVip());
+            int availablePlacesCount =
+                    getAvailablePlacesCount(transactionsList, transaction.getFlight().getAvailabilityOfPlaces());
+            return transactionTicketsCount <= availablePlacesCount;
+        }
+    }
+
+    private int getTransactionTicketsCount(int amountOfTickets, int amountOfTicketsVip) {
+        return amountOfTickets + amountOfTicketsVip;
+    }
+
+    private int getAvailablePlacesCount(List<Integer> transactionsList, int totalPlacesInFlight) {
+        Long reservedPlaces = 0L;
+        for (int transactionId : transactionsList) {
+            reservedPlaces += reservationService.getCountOfReservedPlaces(transactionId);
+        }
+        return (int) (totalPlacesInFlight - reservedPlaces);
+    }
+
     private Transaction buildTransactionFromRequest(Transaction transaction) {
         Transaction newTransaction = new Transaction();
+        List<Reservation> reservations = new ArrayList<>();
+        for (Reservation r : transaction.getReservations()) {
+            Reservation reservation = new Reservation();
+            reservation.setPlace(r.getPlace());
+            reservation.setSector(r.getSector());
+            reservation.setTransaction(newTransaction);
+            reservations.add(reservation);
+        }
         newTransaction.setDateOfTransaction(transaction.getDateOfTransaction());
         newTransaction.setUser(userService.getUserById(transaction.getUser().getId()));
         newTransaction.setFlight(flightService.getFlightById(transaction.getFlight().getId()));
         newTransaction.setAmountOfTickets(transaction.getAmountOfTickets());
         newTransaction.setAmountOfTicketsVip(transaction.getAmountOfTicketsVip());
-        newTransaction.setReservations(transaction.getReservations());
+        newTransaction.setReservations(reservations);
         return newTransaction;
     }
 
