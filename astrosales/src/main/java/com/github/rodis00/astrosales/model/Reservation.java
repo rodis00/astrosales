@@ -10,6 +10,9 @@ public class Reservation {
     @Id
     @GeneratedValue
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
     @Enumerated(EnumType.STRING)
     private Sector sector;
     private int place;

@@ -23,7 +23,6 @@ public class Transaction {
     private Flight flight;
     private int amountOfTickets;
     private int amountOfTicketsVip;
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "transaction_id")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "transaction")
     private List<Reservation> reservations = new ArrayList<>();
 }
