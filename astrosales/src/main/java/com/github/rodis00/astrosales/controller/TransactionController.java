@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/transactions")
+@RequestMapping("astrosales/api/v1/transactions")
 public class TransactionController {
     private final TransactionService transactionService;
     private final UserService userService;
