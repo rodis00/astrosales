@@ -6,6 +6,7 @@ import com.github.rodis00.astrosales.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -32,6 +33,12 @@ public class FlightService implements FlightServiceInterface {
     @Override
     public List<Flight> getAllFlights() {
         return flightRepository.findAll();
+    }
+
+    @Override
+    public List<Flight> getAvailableFlights() {
+        LocalDateTime today = LocalDateTime.now();
+        return flightRepository.getAvailableFlights(today);
     }
 
     @Override

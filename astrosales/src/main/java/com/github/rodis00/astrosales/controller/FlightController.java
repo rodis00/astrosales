@@ -28,11 +28,18 @@ public class FlightController {
                 .body(flightService.saveFlight(flight));
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public ResponseEntity<List<Flight>> getAllFlights() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(flightService.getAllFlights());
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<Flight>> getAvailableFlights() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(flightService.getAvailableFlights());
     }
 
     @GetMapping("/{id}")

@@ -8,6 +8,7 @@ public interface FlightServiceInterface {
     Flight saveFlight(Flight flight);
     Flight getFlightById(Integer id);
     List<Flight> getAllFlights();
+    List<Flight> getAvailableFlights();
     Flight updateFlight(Integer id, Flight flight);
     void deleteFlight(Integer id);
 }
