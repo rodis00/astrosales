@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,18 +49,27 @@ public class TransactionController {
             User user = userService.getUserById(transaction.getUser().getId());
             if (user != null && userProfileIsNotEmpty(user.getUserProfile())) {
                 Transaction newTransaction = buildTransactionFromRequest(transaction);
-                if (!isEnoughPlaces(newTransaction)) {
+                if (!isFlightDateAfterToday(newTransaction.getFlight().getDateOfFlight())) {
                     return ResponseEntity
                             .status(HttpStatus.BAD_REQUEST)
                             .body(new ApiResponseDto(
-                                    FlightUtils.NO_AVAILABLE_PLACES_CODE,
-                                    FlightUtils.NO_AVAILABLE_PLACES_MESSAGE
+                                    FlightUtils.FLIGHT_DATE_IN_THE_PAST_CODE,
+                                    FlightUtils.FLIGHT_DATE_IN_THE_PAST_MESSAGE
                             ));
                 } else {
-                    transactionService.saveTransaction(newTransaction);
-                    return ResponseEntity
-                            .status(HttpStatus.CREATED)
-                            .body(TransactionDto.from(newTransaction));
+                    if (!isEnoughPlaces(newTransaction)) {
+                        return ResponseEntity
+                                .status(HttpStatus.BAD_REQUEST)
+                                .body(new ApiResponseDto(
+                                        FlightUtils.NO_AVAILABLE_PLACES_CODE,
+                                        FlightUtils.NO_AVAILABLE_PLACES_MESSAGE
+                                ));
+                    } else {
+                        transactionService.saveTransaction(newTransaction);
+                        return ResponseEntity
+                                .status(HttpStatus.CREATED)
+                                .body(TransactionDto.from(newTransaction));
+                    }
                 }
             } else {
                 return ResponseEntity
@@ -104,6 +114,10 @@ public class TransactionController {
             reservedPlaces += reservationService.getCountOfReservedPlaces(transactionId);
         }
         return (int) (totalPlacesInFlight - reservedPlaces);
+    }
+
+    private boolean isFlightDateAfterToday(LocalDateTime flightDate) {
+        return flightDate.isAfter(LocalDateTime.now());
     }
 
     private Transaction buildTransactionFromRequest(Transaction transaction) {
