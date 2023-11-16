@@ -9,5 +9,6 @@ public interface TransactionServiceInterface {
     Transaction getTransactionById(Integer id);
     List<Transaction> getTransactionByUserId(Integer id);
     List<Integer> getTransactionsByFlightId(Integer id);
+    List<Transaction> saveAllTransactions(List<Transaction> transactions);
     void deleteTransaction(Integer id);
 }

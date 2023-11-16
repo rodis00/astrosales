@@ -109,10 +109,8 @@ public class UserController {
             List<Transaction> transactions = transactionService.getTransactionByUserId(id);
             if (!transactions.isEmpty()) {
                 for (Transaction t : transactions)
-                {
                     t.setUser(null);
-                    transactionService.saveTransaction(t);
-                }
+                transactionService.saveAllTransactions(transactions);
             }
             userService.deleteUser(id);
             return ResponseEntity

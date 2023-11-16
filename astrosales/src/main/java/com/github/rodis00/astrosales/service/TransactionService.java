@@ -39,6 +39,11 @@ public class TransactionService implements TransactionServiceInterface {
     }
 
     @Override
+    public List<Transaction> saveAllTransactions(List<Transaction> transactions) {
+        return transactionRepository.saveAll(transactions);
+    }
+
+    @Override
     public void deleteTransaction(Integer id) {
         Transaction transaction = getTransactionById(id);
         if (transaction != null)
