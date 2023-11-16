@@ -152,4 +152,19 @@ public class TransactionController {
                     .body(e.getErrorDetails());
         }
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getTransactionsByUserId(@PathVariable Integer userId) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(transactionService.getTransactionByUserId(userId)
+                            .stream()
+                            .map(TransactionDto::from));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
+    }
 }

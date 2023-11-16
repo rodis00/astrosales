@@ -7,7 +7,7 @@ import java.util.List;
 public interface TransactionServiceInterface {
     Transaction saveTransaction(Transaction transaction);
     Transaction getTransactionById(Integer id);
-    Transaction getTransactionByUserId(Integer id);
+    List<Transaction> getTransactionByUserId(Integer id);
     List<Integer> getTransactionsByFlightId(Integer id);
     void deleteTransaction(Integer id);
 }

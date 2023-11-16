@@ -29,7 +29,7 @@ public class TransactionService implements TransactionServiceInterface {
     }
 
     @Override
-    public Transaction getTransactionByUserId(Integer id) {
+    public List<Transaction> getTransactionByUserId(Integer id) {
         return transactionRepository.findByUserId(id);
     }
 

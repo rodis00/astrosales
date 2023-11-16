@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
-    Transaction findByUserId(Integer id);
+    List<Transaction> findByUserId(Integer id);
     @Query("SELECT t.id FROM Transaction t WHERE t.flight.id = :id")
     List<Integer> findIdByFlightId(@Param("id") Integer id);
 }
