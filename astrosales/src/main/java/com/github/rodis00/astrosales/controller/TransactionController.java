@@ -156,6 +156,7 @@ public class TransactionController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getTransactionsByUserId(@PathVariable Integer userId) {
         try {
+            User user = userService.getUserById(userId);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(transactionService.getTransactionByUserId(userId)
