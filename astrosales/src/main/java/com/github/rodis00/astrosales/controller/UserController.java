@@ -106,10 +106,13 @@ public class UserController {
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try {
-            Transaction transaction = transactionService.getTransactionByUserId(id);
-            if (transaction != null) {
-                transaction.setUser(null);
-                transactionService.saveTransaction(transaction);
+            List<Transaction> transactions = transactionService.getTransactionByUserId(id);
+            if (!transactions.isEmpty()) {
+                for (Transaction t : transactions)
+                {
+                    t.setUser(null);
+                    transactionService.saveTransaction(t);
+                }
             }
             userService.deleteUser(id);
             return ResponseEntity
