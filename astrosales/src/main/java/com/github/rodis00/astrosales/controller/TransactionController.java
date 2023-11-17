@@ -2,6 +2,7 @@ package com.github.rodis00.astrosales.controller;
 
 import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.TransactionDto;
+import com.github.rodis00.astrosales.dto.UserTransactionDto;
 import com.github.rodis00.astrosales.exception.TransactionNotFoundException;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
 import com.github.rodis00.astrosales.model.Reservation;
@@ -161,7 +162,7 @@ public class TransactionController {
                     .status(HttpStatus.OK)
                     .body(transactionService.getTransactionByUserId(userId)
                             .stream()
-                            .map(TransactionDto::from));
+                            .map(UserTransactionDto::from));
         } catch (UserNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
