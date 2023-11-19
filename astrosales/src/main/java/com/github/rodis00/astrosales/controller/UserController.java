@@ -1,5 +1,6 @@
 package com.github.rodis00.astrosales.controller;
 
+import com.github.rodis00.astrosales.config.PasswordEncoder;
 import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.UserDto;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
@@ -21,12 +22,14 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final TransactionService transactionService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserController(UserService userService,
-                          TransactionService transactionService) {
+                          TransactionService transactionService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.transactionService = transactionService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("")
@@ -34,7 +37,7 @@ public class UserController {
         if (!userService.existsByEmail(user.getEmail())) {
             User newUser = new User();
             newUser.setEmail(user.getEmail());
-            newUser.setPassword(user.getPassword());
+            newUser.setPassword(passwordEncoder.encodePassword(user.getPassword()));
 
             UserProfile userProfile = new UserProfile();
             newUser.setUserProfile(userProfile);
