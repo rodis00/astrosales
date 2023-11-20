@@ -1,6 +1,5 @@
 package com.github.rodis00.astrosales.controller;
 
-import com.github.rodis00.astrosales.config.PasswordEncoder;
 import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.UserDto;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
@@ -13,6 +12,7 @@ import com.github.rodis00.astrosales.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class UserController {
         if (!userService.existsByEmail(user.getEmail())) {
             User newUser = new User();
             newUser.setEmail(user.getEmail());
-            newUser.setPassword(passwordEncoder.encodePassword(user.getPassword()));
+            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
             UserProfile userProfile = new UserProfile();
             newUser.setUserProfile(userProfile);
