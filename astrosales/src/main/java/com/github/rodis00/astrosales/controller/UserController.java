@@ -38,9 +38,7 @@ public class UserController {
             User newUser = new User();
             newUser.setEmail(user.getEmail());
             newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-
-            UserProfile userProfile = new UserProfile();
-            newUser.setUserProfile(userProfile);
+            newUser.setUserProfile(new UserProfile());
             userService.saveUser(newUser);
 
             return ResponseEntity
