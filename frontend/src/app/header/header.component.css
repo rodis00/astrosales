@@ -8,30 +8,42 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.5rem;
+  flex-wrap: wrap;
 }
 
-a {
-  color: whitesmoke;
+.container .logo {
   text-decoration: none;
+  display: inline-block;
   padding: 1rem;
-  transition: all 0.5s;
+  width: 250px;
+  font-size: 2.5rem;
+  color: whitesmoke;
+  text-align: center;
 }
 
-a:hover {
-  color: rgb(134, 50, 230);
+.container nav {
+  width: 250px;
 }
 
-ul li {
+.container nav ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.container nav ul li {
   list-style-type: none;
 }
 
-nav ul li a {
+.container nav ul li a {
+  text-decoration: none;
   display: inline-block;
   padding: 1rem;
+  color: whitesmoke;
+  font-size: 1.6rem;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 2rem;
+.container .logo:hover,
+.container nav ul li a:hover {
+  color: rgb(236, 203, 12);
 }
