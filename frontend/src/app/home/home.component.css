@@ -1,0 +1,74 @@
+#about-us {
+  width: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-1,
+.container-2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.image,
+.content {
+  width: 35rem;
+  height: 50rem;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  width: 80%;
+  height: 60%;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content p {
+  font-size: 2.5rem;
+}
+
+.content span {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container-1 .content span a {
+  text-decoration: none;
+  background-color: rgb(22, 8, 145);
+  color: whitesmoke;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 25px;
+  width: 9rem;
+  transition: all 0.8s;
+}
+
+.container-1 .content span a:hover {
+  background-color: rgb(19, 92, 202);
+}
+
+#our-ships {
+  width: 100%;
+  background-image: url("../../assets/images/background.png");
+}
+
+.container-2 .content p {
+  color: whitesmoke;
+}
