@@ -47,3 +47,27 @@ header {
 .container nav ul li a:hover {
   color: rgb(236, 203, 12);
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+
+  .container a {
+    width: 100%;
+  }
+
+  .container nav {
+    width: 100%;
+  }
+
+  .container nav ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container nav ul li {
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+  }
+}
