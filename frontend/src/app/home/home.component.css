@@ -41,6 +41,7 @@
 
 .content p {
   font-size: 2.5rem;
+  padding: 1rem;
 }
 
 .content span {
@@ -71,4 +72,42 @@
 
 .container-2 .content p {
   color: whitesmoke;
+}
+
+@media screen and (max-width: 768px) {
+  .image,
+  .content {
+    width: 60%;
+    height: 60%;
+  }
+
+  .container-1 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container-1 .content p,
+  .container-1 .content span,
+  .container-2 .content p {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .image,
+  .content {
+    width: 60%;
+    height: 60%;
+  }
+
+  .container-1 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container-1 .content p,
+  .container-1 .content span,
+  .container-2 .content p {
+    font-size: 2.5rem;
+  }
 }
