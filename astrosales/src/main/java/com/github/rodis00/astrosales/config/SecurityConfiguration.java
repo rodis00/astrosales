@@ -31,9 +31,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                .requestMatchers(HttpMethod.POST, "/astrosales/api/v1/flights/**").hasRole(Role.ADMIN.name())
-                                .requestMatchers(HttpMethod.PUT, "/astrosales/api/v1/flights/**").hasRole(Role.ADMIN.name())
-                                .requestMatchers(HttpMethod.DELETE, "/astrosales/api/v1/flights/**").hasRole(Role.ADMIN.name())
+                                .requestMatchers(HttpMethod.POST, "/astrosales/api/v1/flights/**").hasAuthority(Role.ADMIN.name())
+                                .requestMatchers(HttpMethod.PUT, "/astrosales/api/v1/flights/**").hasAuthority(Role.ADMIN.name())
+                                .requestMatchers(HttpMethod.DELETE, "/astrosales/api/v1/flights/**").hasAuthority(Role.ADMIN.name())
+                                .requestMatchers(HttpMethod.GET, "/astrosales/api/v1/flights/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
