@@ -1,0 +1,11 @@
+@if(flights.length > 0) {
+<h1>Dostępne loty:</h1>
+@for(flight of flights; track flight.id) {
+<div>
+  {{ flight.dateOfFlight }}
+  {{ flight.startingPlace }}
+  {{ flight.landingPlace }}
+</div>
+} } @else {
+<h1>Brak dostępnych lotów.</h1>
+}
