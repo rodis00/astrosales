@@ -20,7 +20,12 @@ export class FlightsComponent {
   public getAvailableFlights(): void {
     this.flightService.getAvailableFlights().subscribe(
       (response: Flight[]) => {
-        this.flights = response;
+        this.flights = response.map((flight: Flight) => {
+          return {
+            ...flight,
+            dateOfFlight: new Date(flight.dateOfFlight),
+          };
+        });
         console.log(response);
       },
       (error: HttpErrorResponse) => {

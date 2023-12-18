@@ -1,11 +1,49 @@
-@if(flights.length > 0) {
-<h1>Dostępne loty:</h1>
-@for(flight of flights; track flight.id) {
-<div>
-  {{ flight.dateOfFlight }}
-  {{ flight.startingPlace }}
-  {{ flight.landingPlace }}
+<div class="container">
+  @if(flights.length > 0) {
+  <h1>Dostępne loty:</h1>
+  @for(flight of flights; track flight.id) {
+  <div class="content-container">
+    <div class="content">
+      <div class="date-of-flight">
+        <div class="date">
+          <img src="../../assets/images/calendar.svg" alt="calendar icon" />
+          <h2>
+            {{ flight.dateOfFlight.getFullYear() }} -
+            {{ flight.dateOfFlight.getMonth() + 1 }} -
+            {{ flight.dateOfFlight.getDate() }}
+          </h2>
+        </div>
+        <div class="time">
+          <img src="../../assets/images/clock.svg" alt="clock icon" />
+          <h3>
+            {{ flight.dateOfFlight.getHours() }} :
+            {{ flight.dateOfFlight.getMinutes() }}
+          </h3>
+        </div>
+      </div>
+      <div class="travel-target">
+        <div class="start-place">
+          <h3>Miejsce Startu:</h3>
+          <span>{{ flight.startingPlace }} </span>
+        </div>
+        <div class="end-place">
+          <h3>Miejsce Lądowania:</h3>
+          <span>{{ flight.landingPlace }}</span>
+        </div>
+      </div>
+      <div class="available-places">
+        <span>{{ flight.availabilityOfPlaces }}</span>
+      </div>
+    </div>
+    <div class="image">
+      @if (flight.landingPlace.toLowerCase() == "moon") {
+      <img src="../../assets/images/moon.jpg" alt="moon image" />
+      } @else {
+      <img src="../../assets/images/unknown.jpg" alt="unknown" />
+      }
+    </div>
+  </div>
+  } } @else {
+  <h1>Brak dostępnych lotów.</h1>
+  }
 </div>
-} } @else {
-<h1>Brak dostępnych lotów.</h1>
-}

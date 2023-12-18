@@ -1,0 +1,109 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.content-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content,
+.image {
+  width: 50%;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  width: 100%;
+  height: 310px;
+  border-radius: 0 1rem 1rem 0;
+  object-fit: cover;
+}
+
+.content {
+  background-color: whitesmoke;
+  border-radius: 1rem 0 0 1rem;
+  padding: 2rem 0;
+}
+
+.content .date-of-flight {
+  text-align: center;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.date-of-flight .date {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.date-of-flight .date img,
+.date-of-flight .time img {
+  width: 1.6rem;
+}
+
+.date-of-flight .time {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.content .travel-target {
+  display: flex;
+  justify-content: space-around;
+}
+
+.start-place,
+.end-place {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 1rem;
+}
+
+.start-place span,
+.end-place span {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.start-place h3,
+.end-place h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.available-places {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 1.5rem;
+}
+
+.available-places span {
+  font-weight: bold;
+}
+
+.available-places::before {
+  content: "Liczba miejsc: ";
+  font-size: 1.5rem;
+}
