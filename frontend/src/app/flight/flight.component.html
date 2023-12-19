@@ -1,0 +1,45 @@
+<div class="container">
+  @if (flight) {
+  <div class="flight-details">
+    <div class="date-of-flight">
+      <h1>{{ flight.dateOfFlight }}</h1>
+    </div>
+    <div class="trip-details">
+      <span>{{ flight.startingPlace }}</span>
+      <img src="../../assets/images/arrow_right.svg" alt="" />
+      <span>{{ flight.landingPlace }}</span>
+    </div>
+  </div>
+  <div class="purchase-details">
+    <div class="premium-tickets">
+      <div class="header">
+        <span>Miejsca VIP:</span>
+      </div>
+      <div class="vip-sector">
+        <div class="places">
+          @for (number of getRange(1, 20); track number) {
+          <div id="place">{{ number }}</div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="standard-tickets">
+      <div class="header">
+        <span>Miejsca Standard:</span>
+      </div>
+      <div class="standard-sector">
+        <div class="places">
+          @for (number of getRange(21, 50); track number) {
+          <div id="place">{{ number }}</div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  } @else {
+  <div class="not-found">
+    <h1>Flight not found</h1>
+  </div>
+  }
+</div>
