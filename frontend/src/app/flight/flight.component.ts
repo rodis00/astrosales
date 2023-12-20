@@ -26,8 +26,8 @@ export class FlightComponent {
 
   private getFlightById(id: number): void {
     this.flightService.getFlightById(id).subscribe((flight: Flight) => {
+      flight.dateOfFlight = new Date(flight.dateOfFlight);
       this.flight = flight;
-      console.log(flight);
     });
   }
 

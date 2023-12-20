@@ -2,7 +2,23 @@
   @if (flight) {
   <div class="flight-details">
     <div class="date-of-flight">
-      <h1>{{ flight.dateOfFlight }}</h1>
+      <h1>
+        {{ flight.dateOfFlight.getFullYear() }}
+        - @if (flight.dateOfFlight.getMonth() < 10) { 0{{
+          flight.dateOfFlight.getMonth() + 1
+        }}
+        } @else {
+        {{ flight.dateOfFlight.getMonth() + 1 }}
+        } - @if (flight.dateOfFlight.getDate() < 10) { 0{{
+          flight.dateOfFlight.getDate()
+        }}
+        } @else {
+        {{ flight.dateOfFlight.getDate() }}
+        } (
+        {{ flight.dateOfFlight.getHours() }} :
+        {{ flight.dateOfFlight.getMinutes() }}
+        )
+      </h1>
     </div>
     <div class="trip-details">
       <span>{{ flight.startingPlace }}</span>
