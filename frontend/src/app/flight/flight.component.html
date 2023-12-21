@@ -1,56 +1,68 @@
 <div class="container">
   @if (flight) {
-  <div class="flight-details">
-    <div class="date-of-flight">
-      <h1>
-        {{ flight.dateOfFlight.getFullYear() }}
-        - @if (flight.dateOfFlight.getMonth() < 10) { 0{{
-          flight.dateOfFlight.getMonth() + 1
-        }}
-        } @else {
-        {{ flight.dateOfFlight.getMonth() + 1 }}
-        } - @if (flight.dateOfFlight.getDate() < 10) { 0{{
-          flight.dateOfFlight.getDate()
-        }}
-        } @else {
-        {{ flight.dateOfFlight.getDate() }}
-        } (
-        {{ flight.dateOfFlight.getHours() }} :
-        {{ flight.dateOfFlight.getMinutes() }}
-        )
-      </h1>
+  <div class="wrapper">
+    <div class="flight-details">
+      <div class="date-of-flight">
+        <h1>
+          {{ flight.dateOfFlight.getFullYear() }}
+          - @if (flight.dateOfFlight.getMonth() < 10) { 0{{
+            flight.dateOfFlight.getMonth() + 1
+          }}
+          } @else {
+          {{ flight.dateOfFlight.getMonth() + 1 }}
+          } - @if (flight.dateOfFlight.getDate() < 10) { 0{{
+            flight.dateOfFlight.getDate()
+          }}
+          } @else {
+          {{ flight.dateOfFlight.getDate() }}
+          } (
+          {{ flight.dateOfFlight.getHours() }} :
+          {{ flight.dateOfFlight.getMinutes() }}
+          )
+        </h1>
+      </div>
+      <div class="trip-details">
+        <span>{{ flight.startingPlace }}</span>
+        <img src="../../assets/images/arrow_right.svg" alt="" />
+        <span>{{ flight.landingPlace }}</span>
+      </div>
     </div>
-    <div class="trip-details">
-      <span>{{ flight.startingPlace }}</span>
-      <img src="../../assets/images/arrow_right.svg" alt="" />
-      <span>{{ flight.landingPlace }}</span>
+    <div class="purchase-details">
+      <div class="premium-tickets">
+        <div class="header">
+          <span>Miejsca VIP:</span>
+        </div>
+        <div class="vip-sector">
+          <div class="places">
+            @for (number of getRange(1, 20); track number) {
+            <div id="place">{{ number }}</div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="standard-tickets">
+        <div class="header">
+          <span>Miejsca Standard:</span>
+        </div>
+        <div class="standard-sector">
+          <div class="places">
+            @for (number of getRange(21, 50); track number) {
+            <div id="place">{{ number }}</div>
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="purchase-details">
-    <div class="premium-tickets">
-      <div class="header">
-        <span>Miejsca VIP:</span>
-      </div>
-      <div class="vip-sector">
-        <div class="places">
-          @for (number of getRange(1, 20); track number) {
-          <div id="place">{{ number }}</div>
-          }
-        </div>
-      </div>
-    </div>
-    <div class="standard-tickets">
-      <div class="header">
-        <span>Miejsca Standard:</span>
-      </div>
-      <div class="standard-sector">
-        <div class="places">
-          @for (number of getRange(21, 50); track number) {
-          <div id="place">{{ number }}</div>
-          }
-        </div>
-      </div>
-    </div>
+  <div class="description">
+    <span
+      ><b>VIP</b> - bilet w górnej części promu. Zapewnia posiłki wliczone w
+      cenę oraz dostęp do muzyki umilającej podróż.</span
+    >
+    <span
+      ><b>Standard</b> - bilet w dolnej części promu. Posiłki oraz dostęp do
+      muzyki nie jest wliczony w koszt biletu.
+    </span>
   </div>
 
   } @else {
