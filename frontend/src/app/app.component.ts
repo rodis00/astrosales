@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightService } from './services/flight/flight.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { FlightService } from './services/flight/flight.service';
     HomeComponent,
     HttpClientModule,
   ],
-  providers: [FlightService],
+  providers: [FlightService, AuthService],
 })
 export class AppComponent {
   title = 'frontend';

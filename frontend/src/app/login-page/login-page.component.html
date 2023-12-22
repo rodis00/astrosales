@@ -1,9 +1,9 @@
 <div class="container">
   <h1>Masz już konto?</h1>
   <h2>Zaloguj się!</h2>
-  <form action="" method="post">
-    <input type="text" placeholder="Email address" />
-    <input type="password" placeholder="Password" />
+  <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+    <input type="email" formControlName="email" placeholder="Email address" />
+    <input type="password" formControlName="password" placeholder="Password" />
     <button type="submit">Zaloguj</button>
   </form>
   <div class="reminder">
