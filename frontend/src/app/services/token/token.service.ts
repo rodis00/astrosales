@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
   constructor() {
-    setInterval(() => this.checkTokenExpirationTime(), 1000 * 1);
+    setInterval(() => this.checkTokenExpirationTime(), 1000 * 60);
   }
 
   public setToken(response: string): void {
-    const tokenExpirationTime = 1000 * 30;
+    const tokenExpirationTime = 1000 * 60 * 60 * 24;
     sessionStorage.setItem('token', JSON.stringify(response));
     sessionStorage.setItem(
       'tokenExpirationTime',
