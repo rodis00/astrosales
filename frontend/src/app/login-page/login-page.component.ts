@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/User';
 import { AuthService } from '../services/auth/auth.service';
+import { TokenUtils } from '../utils/TokenUtils';
 
 @Component({
   selector: 'app-login-page',
@@ -20,7 +21,7 @@ export class LoginPageComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   user: User = new User('', '');
-  token: string = '';
+  tokenUtils: TokenUtils = new TokenUtils();
 
   public handleSubmit() {
     this.user = new User(
@@ -31,10 +32,9 @@ export class LoginPageComponent {
   }
 
   public authenticate(user: User): void {
-    this.authService.authenticate(user).subscribe((response: string) => {
-      this.token = response;
-      console.log(response);
-      if (this.token != '') {
+    this.authService.authenticate(user).subscribe((token: string) => {
+      if (token != '') {
+        this.tokenUtils.setToken(token);
         this.router.navigateByUrl('/');
       }
     });
