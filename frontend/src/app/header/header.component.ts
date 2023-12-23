@@ -7,4 +7,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  public token: any = sessionStorage.getItem('token');
+
+  public logout(): void {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('tokenExpirationTime');
+    location.reload();
+  }
+}

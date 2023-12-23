@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/User';
 import { AuthService } from '../services/auth/auth.service';
-import { TokenUtils } from '../utils/TokenUtils';
+import { TokenService } from '../services/token/token.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,10 +18,13 @@ export class LoginPageComponent {
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
 
   user: User = new User('', '');
-  tokenUtils: TokenUtils = new TokenUtils();
 
   public handleSubmit() {
     this.user = new User(
@@ -34,9 +37,17 @@ export class LoginPageComponent {
   public authenticate(user: User): void {
     this.authService.authenticate(user).subscribe((token: string) => {
       if (token != '') {
-        this.tokenUtils.setToken(token);
         this.router.navigateByUrl('/');
+        this.tokenService.setToken(token);
+        this.refreshPage();
+        // issue: token is not remove after refreshPage()
       }
     });
+  }
+
+  private refreshPage(): void {
+    setTimeout(() => {
+      location.reload();
+    }, 100);
   }
 }

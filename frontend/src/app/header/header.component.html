@@ -4,7 +4,13 @@
     <nav>
       <ul>
         <li><a routerLink="/flights">Loty</a></li>
-        <li><a routerLink="/login">Zaloguj się</a></li>
+        @if (token != undefined) {
+        <li><a href="#" (click)="logout()">Wyloguj</a></li>
+        } @else {
+        <li>
+          <a routerLink="/login">Zaloguj się</a>
+        </li>
+        }
       </ul>
     </nav>
   </div>
