@@ -1,9 +1,9 @@
 <div class="container">
   <h1>Nie masz konta?</h1>
   <h2>Zarejestruj się!</h2>
-  <form action="" method="post">
-    <input type="text" placeholder="Email address" />
-    <input type="password" placeholder="Password" />
+  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+    <input formControlName="email" type="email" placeholder="Email address" />
+    <input formControlName="password" type="password" placeholder="Password" />
     <button type="submit">Zarejestruj</button>
   </form>
   <div class="reminder">

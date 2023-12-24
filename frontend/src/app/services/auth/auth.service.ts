@@ -14,4 +14,8 @@ export class AuthService {
   public authenticate(user: User): Observable<string> {
     return this.http.post<string>(`${this.apiUrl}/auth/authenticate`, user);
   }
+
+  public register(user: User): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/auth/register`, user);
+  }
 }
