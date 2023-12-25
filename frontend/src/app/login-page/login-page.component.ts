@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/User';
 import { AuthService } from '../services/auth/auth.service';
 import { TokenService } from '../services/token/token.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
@@ -35,14 +36,20 @@ export class LoginPageComponent {
   }
 
   public authenticate(user: User): void {
-    this.authService.authenticate(user).subscribe((token: string) => {
-      if (token != '') {
-        this.router.navigateByUrl('/');
-        this.tokenService.setToken(token);
-        this.refreshPage();
-        // issue: token is not remove after refreshPage()
+    this.authService.authenticate(user).subscribe(
+      (token: string) => {
+        if (token != '') {
+          this.router.navigateByUrl('/');
+          this.tokenService.setToken(token);
+          this.refreshPage();
+          // issue: token is not remove after refreshPage()
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        alert(error.error.responseMessage);
       }
-    });
+    );
   }
 
   private refreshPage(): void {
