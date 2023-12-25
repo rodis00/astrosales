@@ -21,19 +21,25 @@ public class AuthenticationController {
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         if (!userService.existsByEmail(request.getEmail()))
             return ResponseEntity.ok(authenticationService.register(request));
-        else {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponseDto(
-                        UserUtils.USER_EXISTS_CODE,
-                        UserUtils.USER_EXISTS_MESSAGE
-                    ));
-        }
+        else
+            return userExistsResponse();
     }
 
     @PostMapping("/register-admin-user")
-    public ResponseEntity<AuthenticationResponse> registerAdminUser(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authenticationService.registerAdminUser(request));
+    public ResponseEntity<?> registerAdminUser(@RequestBody RegisterRequest request) {
+        if (!userService.existsByEmail(request.getEmail()))
+            return ResponseEntity.ok(authenticationService.registerAdminUser(request));
+        else
+            return userExistsResponse();
+    }
+
+    private ResponseEntity<ApiResponseDto> userExistsResponse() {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponseDto(
+                        UserUtils.USER_EXISTS_CODE,
+                        UserUtils.USER_EXISTS_MESSAGE
+                ));
     }
 
     @PostMapping("/authenticate")
