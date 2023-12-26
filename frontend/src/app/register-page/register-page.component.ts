@@ -48,7 +48,6 @@ export class RegisterPageComponent {
       (error: HttpErrorResponse) => {
         console.log(error);
         this.errorMessage = error.error.responseMessage;
-        alert(error.error.responseMessage);
       }
     );
   }
