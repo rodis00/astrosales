@@ -26,6 +26,7 @@ export class LoginPageComponent {
   ) {}
 
   user: User = new User('', '');
+  errorMessage: string = '';
 
   public handleSubmit() {
     this.user = new User(
@@ -47,7 +48,7 @@ export class LoginPageComponent {
       },
       (error: HttpErrorResponse) => {
         console.log(error);
-        alert(error.error.responseMessage);
+        this.errorMessage = error.error.responseMessage;
       }
     );
   }

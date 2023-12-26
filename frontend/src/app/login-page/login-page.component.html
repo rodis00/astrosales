@@ -4,6 +4,11 @@
   <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
     <input type="email" formControlName="email" placeholder="Email address" />
     <input type="password" formControlName="password" placeholder="Password" />
+    @if (errorMessage != '') {
+    <div class="error-box">
+      <span>{{ errorMessage }}</span>
+    </div>
+    }
     <button type="submit">Zaloguj</button>
   </form>
   <div class="reminder">
