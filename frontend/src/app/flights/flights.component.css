@@ -15,7 +15,8 @@
 }
 
 .content-container {
-  width: 50%;
+  min-width: 850px;
+  max-width: 850px;
   margin: 0 auto;
   margin-top: 1rem;
   border-radius: 1rem;
@@ -25,9 +26,12 @@
   justify-content: center;
 }
 
-.content,
 .image {
-  width: 50%;
+  width: 45%;
+}
+
+.content {
+  width: 55%;
 }
 
 .image {
