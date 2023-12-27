@@ -9,7 +9,13 @@
       <span>{{ errorMessage }}</span>
     </div>
     }
-    <button type="submit">Zarejestruj</button>
+    <button
+      type="submit"
+      [disabled]="!registerForm.valid"
+      [class]="{ 'disabled-button': !registerForm.valid }"
+    >
+      Zarejestruj
+    </button>
   </form>
   <div class="reminder">
     <a routerLink="/login">Zaloguj</a>
