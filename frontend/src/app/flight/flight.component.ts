@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FlightComponent {
   flight!: Flight;
+  choosenPlaces: Array<number> = [];
 
   constructor(
     private flightService: FlightService,
@@ -33,5 +34,18 @@ export class FlightComponent {
 
   public getRange(start: number, end: number): number[] {
     return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  }
+
+  public addPlace(place: number) {
+    if (this.choosenPlaces.includes(place)) {
+      let index = this.choosenPlaces.indexOf(place);
+      if (index !== -1) {
+        this.choosenPlaces.splice(index, 1);
+        console.log(this.choosenPlaces);
+      }
+    } else {
+      this.choosenPlaces.push(place);
+      console.log(this.choosenPlaces);
+    }
   }
 }

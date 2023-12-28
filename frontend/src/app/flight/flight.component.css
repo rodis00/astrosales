@@ -74,7 +74,8 @@
   width: 600px;
 }
 
-.places {
+.standard-sector .places,
+.vip-sector .places {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -91,12 +92,46 @@
   border-radius: 1rem;
   margin: 0.5rem;
   color: whitesmoke;
+  transition: all 0.5s;
 }
 
 #place:hover {
   cursor: pointer;
   background-color: rgb(9, 188, 9);
   box-shadow: 0 0 1rem black;
+}
+
+.right .title {
+  margin-top: 10rem;
+}
+
+.places-container .places {
+  text-align: center;
+}
+
+.choosen-place {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.continue-button {
+  margin-top: 2rem;
+}
+
+.continue-button a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: rgb(22, 8, 145);
+  padding: 0.5rem;
+  width: 7.5rem;
+  border-radius: 25px;
+  color: whitesmoke;
+}
+
+.continue-button a:hover {
+  cursor: pointer;
+  background-color: rgb(42, 22, 219);
 }
 
 .container .not-found {
