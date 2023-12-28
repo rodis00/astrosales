@@ -13,6 +13,7 @@
 .flight-details {
   box-shadow: 0 0 1rem black;
   border-radius: 25px;
+  padding: 1rem;
 }
 
 .title {
@@ -36,7 +37,7 @@
 .text,
 .content {
   width: 50%;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
 }
