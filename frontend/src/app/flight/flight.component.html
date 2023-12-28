@@ -65,7 +65,12 @@
           <div class="vip-sector">
             <div class="places">
               @for (number of getRange(1, 20); track number) {
-              <div id="place" value="number" (click)="addPlace(number)">
+              <div
+                id="place"
+                value="number"
+                (click)="addPlace(number)"
+                [class]="{ selected: choosenPlaces.includes(number) }"
+              >
                 {{ number }}
               </div>
               }
@@ -79,7 +84,12 @@
           <div class="standard-sector">
             <div class="places">
               @for (number of getRange(21, 50); track number) {
-              <div id="place" value="number" (click)="addPlace(number)">
+              <div
+                id="place"
+                value="number"
+                (click)="addPlace(number)"
+                [class]="{ selected: choosenPlaces.includes(number) }"
+              >
                 {{ number }}
               </div>
               }

@@ -101,6 +101,11 @@
   box-shadow: 0 0 1rem black;
 }
 
+#place.selected {
+  background-color: orange;
+  box-shadow: none;
+}
+
 .right .title {
   margin-top: 10rem;
 }
