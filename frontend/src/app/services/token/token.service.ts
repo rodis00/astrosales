@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
+  private jwtHelper: JwtHelperService = new JwtHelperService();
   constructor() {
     setInterval(() => this.checkTokenExpirationTime(), 1000 * 60);
   }
@@ -23,6 +25,21 @@ export class TokenService {
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('tokenExpirationTime');
       location.reload();
+    }
+  }
+
+  getRolesAndIdFromToken(
+    token: string
+  ): { roles: string[]; id: string } | null {
+    try {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const userRoles = decodedToken.roles;
+      const userId = decodedToken.userId;
+
+      return { roles: userRoles, id: userId };
+    } catch (error) {
+      console.error('Błąd odczytu tokena:', error);
+      return null;
     }
   }
 }
