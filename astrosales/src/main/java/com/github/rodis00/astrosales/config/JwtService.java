@@ -1,5 +1,6 @@
 package com.github.rodis00.astrosales.config;
 
+import com.github.rodis00.astrosales.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -50,6 +51,8 @@ public class JwtService {
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
+                .claim("userId", ((User) userDetails).getId())
+                .claim("roles", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) //24 hours + 1000 milisec
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
