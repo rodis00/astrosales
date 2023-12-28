@@ -36,16 +36,14 @@ export class FlightComponent {
     return Array.from({ length: end - start + 1 }, (_, index) => start + index);
   }
 
-  public addPlace(place: number) {
+  public addPlace(place: number): void {
     if (this.choosenPlaces.includes(place)) {
       let index = this.choosenPlaces.indexOf(place);
       if (index !== -1) {
         this.choosenPlaces.splice(index, 1);
-        console.log(this.choosenPlaces);
       }
     } else {
       this.choosenPlaces.push(place);
-      console.log(this.choosenPlaces);
     }
   }
 }
