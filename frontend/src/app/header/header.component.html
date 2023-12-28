@@ -5,6 +5,7 @@
       <ul>
         <li><a routerLink="/flights">Loty</a></li>
         @if (token != undefined) {
+        <li><a routerLink="/account/{{ userDetails.id }}">Konto</a></li>
         <li><a href="#" (click)="logout()">Wyloguj</a></li>
         } @else {
         <li>
