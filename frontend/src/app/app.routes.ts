@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { FlightsComponent } from './flights/flights.component';
 import { FlightComponent } from './flight/flight.component';
+import { AccountComponent } from './account/account.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'flights', component: FlightsComponent },
   { path: 'flight/:id', component: FlightComponent },
+  { path: 'account/:id', component: AccountComponent },
 ];
