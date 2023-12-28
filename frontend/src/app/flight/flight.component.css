@@ -96,6 +96,7 @@
 #place:hover {
   cursor: pointer;
   background-color: rgb(9, 188, 9);
+  box-shadow: 0 0 1rem black;
 }
 
 .container .not-found {
