@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="header">
+      <h1>{{ selectedItem }}</h1>
+    </div>
+    <div class="interface">
+      <ul class="navigation">
+        <li
+          (click)="selectIem(profile)"
+          [class]="{ selected: selectedItem === profile }"
+        >
+          Moje dane
+        </li>
+        <li
+          (click)="selectIem(activeTickets)"
+          [class]="{ selected: selectedItem === activeTickets }"
+        >
+          Aktywne bilety
+        </li>
+        <li
+          (click)="selectIem(ticketsHistory)"
+          [class]="{ selected: selectedItem === ticketsHistory }"
+        >
+          Historia zakupów
+        </li>
+      </ul>
+      <div class="content-wrapper">
+        <div class="content">
+          @if(selectedItem === profile) {
+          <span>konto</span>
+          } @if (selectedItem === activeTickets) {
+          <span>aktywne bilety</span>
+          } @if (selectedItem === ticketsHistory) {
+          <span>historia biletow</span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
