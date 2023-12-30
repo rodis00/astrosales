@@ -10,9 +10,9 @@ export class TokenService {
     setInterval(() => this.checkTokenExpirationTime(), 1000 * 60);
   }
 
-  public setToken(response: string): void {
+  public setToken(response: any): void {
     const tokenExpirationTime = 1000 * 60 * 60 * 24;
-    sessionStorage.setItem('token', JSON.stringify(response));
+    sessionStorage.setItem('token', JSON.stringify(response.token));
     sessionStorage.setItem(
       'tokenExpirationTime',
       (Date.now() + tokenExpirationTime).toString()
