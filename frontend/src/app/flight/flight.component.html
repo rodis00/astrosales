@@ -1,121 +1,123 @@
 <div class="container">
   @if (flight) {
   <div class="wrapper">
-    <div class="left">
-      <div class="flight-details">
-        <div class="title">
-          <span>Szczegóły podróży:</span>
-        </div>
-        <div class="details-wrapper">
-          <div class="date">
-            <div class="text">
-              <span>Data:</span>
-            </div>
-            <div class="content">
-              <span>
-                {{ flight.dateOfFlight.getFullYear() }}
-                - @if (flight.dateOfFlight.getMonth() < 10) { 0{{
-                  flight.dateOfFlight.getMonth() + 1
-                }}
-                } @else {
-                {{ flight.dateOfFlight.getMonth() + 1 }}
-                } - @if (flight.dateOfFlight.getDate() < 10) { 0{{
-                  flight.dateOfFlight.getDate()
-                }}
-                } @else {
-                {{ flight.dateOfFlight.getDate() }}
-                }
-              </span>
-            </div>
-          </div>
-          <div class="time">
-            <div class="text">
-              <span>Godzina:</span>
-            </div>
-            <div class="content">
-              <span>
-                {{ flight.dateOfFlight.getHours() }} :
-                {{ flight.dateOfFlight.getMinutes() }}
-              </span>
-            </div>
-          </div>
-          <div class="start-place">
-            <div class="text">
-              <span>Miejsce startu:</span>
-            </div>
-            <div class="content">
-              <span>{{ flight.startingPlace }}</span>
-            </div>
-          </div>
-          <div class="end-place">
-            <div class="text">
-              <span>Miejsce lądowania:</span>
-            </div>
-            <div class="content">
-              <span>{{ flight.landingPlace }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="purchase-details">
-        <div class="premium-tickets">
-          <div class="header">
-            <span>Miejsca VIP:</span>
-          </div>
-          <div class="vip-sector">
-            <div class="places">
-              @for (number of getRange(1, 20); track number) {
-              <div
-                id="place"
-                value="number"
-                (click)="addPlace(number)"
-                [class]="{ selected: choosenPlaces.includes(number) }"
-              >
-                {{ number }}
-              </div>
-              }
-            </div>
-          </div>
-        </div>
-        <div class="standard-tickets">
-          <div class="header">
-            <span>Miejsca Standard:</span>
-          </div>
-          <div class="standard-sector">
-            <div class="places">
-              @for (number of getRange(21, 50); track number) {
-              <div
-                id="place"
-                value="number"
-                (click)="addPlace(number)"
-                [class]="{ selected: choosenPlaces.includes(number) }"
-              >
-                {{ number }}
-              </div>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="main-header">
+      <h1>Szczegóły podróży</h1>
     </div>
-    <div class="right">
-      <div class="title">
-        <span>Wybrane miejsca:</span>
+    <div class="main-section">
+      <div class="left">
+        <div class="flight-details">
+          <div class="details-wrapper">
+            <div class="date">
+              <div class="text">
+                <span>Data:</span>
+              </div>
+              <div class="content">
+                <span>
+                  {{ flight.dateOfFlight.getFullYear() }}
+                  - @if (flight.dateOfFlight.getMonth() < 10) { 0{{
+                    flight.dateOfFlight.getMonth() + 1
+                  }}
+                  } @else {
+                  {{ flight.dateOfFlight.getMonth() + 1 }}
+                  } - @if (flight.dateOfFlight.getDate() < 10) { 0{{
+                    flight.dateOfFlight.getDate()
+                  }}
+                  } @else {
+                  {{ flight.dateOfFlight.getDate() }}
+                  }
+                </span>
+              </div>
+            </div>
+            <div class="time">
+              <div class="text">
+                <span>Godzina:</span>
+              </div>
+              <div class="content">
+                <span>
+                  {{ flight.dateOfFlight.getHours() }} :
+                  {{ flight.dateOfFlight.getMinutes() }}
+                </span>
+              </div>
+            </div>
+            <div class="start-place">
+              <div class="text">
+                <span>Miejsce startu:</span>
+              </div>
+              <div class="content">
+                <span>{{ flight.startingPlace }}</span>
+              </div>
+            </div>
+            <div class="end-place">
+              <div class="text">
+                <span>Miejsce lądowania:</span>
+              </div>
+              <div class="content">
+                <span>{{ flight.landingPlace }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="purchase-details">
+          <div class="premium-tickets">
+            <div class="header">
+              <span>Miejsca VIP:</span>
+            </div>
+            <div class="vip-sector">
+              <div class="places">
+                @for (number of getRange(1, 20); track number) {
+                <div
+                  id="place"
+                  value="number"
+                  (click)="addPlace(number)"
+                  [class]="{ selected: choosenPlaces.includes(number) }"
+                >
+                  {{ number }}
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="standard-tickets">
+            <div class="header">
+              <span>Miejsca Standard:</span>
+            </div>
+            <div class="standard-sector">
+              <div class="places">
+                @for (number of getRange(21, 50); track number) {
+                <div
+                  id="place"
+                  value="number"
+                  (click)="addPlace(number)"
+                  [class]="{ selected: choosenPlaces.includes(number) }"
+                >
+                  {{ number }}
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="places-container">
-        <div class="places">
-          @if(choosenPlaces.length == 0) {
-          <span>Brak wybranych miejsc.</span>
-          } @else {
-          <div class="choosen-place">
-            @for (place of choosenPlaces; track place) {
-            <div id="place">{{ place }}</div>
+      <div class="right">
+        <div class="title">
+          <span>Wybrane miejsca:</span>
+        </div>
+        <div class="places-container">
+          <div class="places">
+            @if(choosenPlaces.length == 0) {
+            <span>Brak wybranych miejsc.</span>
+            } @else {
+            <div class="choosen-place">
+              @for (place of choosenPlaces; track place) {
+              <div id="place">{{ place }}</div>
+              }
+            </div>
+            <div class="continue-button">
+              <a href="#">Wybierz</a>
+            </div>
             }
           </div>
-          <div class="continue-button">
-            <a href="#">Wybierz</a>
-          </div>
-          }
         </div>
       </div>
     </div>
