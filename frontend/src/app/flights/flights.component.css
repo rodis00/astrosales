@@ -9,14 +9,30 @@
   color: black;
 }
 
+.main-header {
+  background-color: rgb(22, 8, 145);
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+}
+
+.main-header h1 {
+  font-size: 2.5rem;
+  color: whitesmoke;
+  font-weight: 400;
+}
+
 .container h1 {
-  text-align: center;
   font-size: 3rem;
 }
 
 .content-container {
-  min-width: 850px;
-  max-width: 850px;
+  min-width: 980px;
+  max-width: 980px;
   margin: 0 auto;
   margin-top: 1rem;
   border-radius: 1rem;

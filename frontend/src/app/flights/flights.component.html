@@ -1,6 +1,8 @@
 <div class="container">
   @if(flights.length > 0) {
-  <h1>Dostępne loty:</h1>
+  <div class="main-header">
+    <h1>Dostępne loty</h1>
+  </div>
   @for(flight of flights; track flight.id) {
   <a routerLink="/flight/{{ flight.id }}">
     <div class="content-container">
