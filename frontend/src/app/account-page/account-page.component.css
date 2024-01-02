@@ -49,13 +49,10 @@
 }
 
 .content-wrapper {
-  background-color: blue;
   width: 70%;
 }
 
 .content {
-  background-color: red;
-  width: 95%;
+  width: 80%;
   margin-left: auto;
-  padding: 1rem;
 }
