@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<div class="container">
+  <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <label for="firstName">Imię:</label>
+    <input
+      type="text"
+      id="firstName"
+      formControlName="firstName"
+      [placeholder]="userProfileWithId.firstName"
+    />
+
+    <label for="lastName">Nazwisko:</label>
+    <input
+      type="text"
+      id="lastName"
+      formControlName="lastName"
+      [placeholder]="userProfileWithId.lastName"
+    />
+
+    <label for="phoneNumber">Telefon:</label>
+    <input
+      type="tel"
+      id="phoneNumber"
+      formControlName="phoneNumber"
+      [placeholder]="userProfileWithId.phoneNumber"
+    />
+
+    <button
+      type="submit"
+      [disabled]="profileForm.invalid"
+      [class]="{ 'disabled-button': profileForm.invalid }"
+    >
+      Zapisz
+    </button>
+  </form>
+</div>
