@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserProfile } from '../../models/UserProfile';
+import { UserProfile, UserProfileWithId } from '../../models/UserProfile';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -20,8 +20,20 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) {}
 
-  public getUserProfile(id: number): Observable<UserProfile> {
+  public getUserProfile(id: number): Observable<UserProfileWithId> {
     console.log(this.options);
-    return this.http.get<UserProfile>(`${this.apiUrl}/user-profiles/${id}`);
+    return this.http.get<UserProfileWithId>(
+      `${this.apiUrl}/user-profiles/${id}`
+    );
+  }
+
+  public updateUserProfile(
+    id: number,
+    userProfile: UserProfile
+  ): Observable<UserProfileWithId> {
+    return this.http.put<UserProfileWithId>(
+      `${this.apiUrl}/user-profiles/${id}`,
+      userProfile
+    );
   }
 }
