@@ -179,3 +179,9 @@
   font-size: 0.9rem;
   margin-left: 2rem;
 }
+
+#place.reserved {
+  background-color: gray;
+  box-shadow: none;
+  cursor: default;
+}

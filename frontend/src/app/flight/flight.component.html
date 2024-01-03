@@ -70,7 +70,10 @@
                   id="place"
                   value="number"
                   (click)="addPlace(number)"
-                  [class]="{ selected: choosenPlaces.includes(number) }"
+                  [class]="{
+                    selected: choosenPlaces.includes(number),
+                    reserved: reservedPlaces.includes(number)
+                  }"
                 >
                   {{ number }}
                 </div>
@@ -89,7 +92,10 @@
                   id="place"
                   value="number"
                   (click)="addPlace(number)"
-                  [class]="{ selected: choosenPlaces.includes(number) }"
+                  [class]="{
+                    selected: choosenPlaces.includes(number),
+                    reserved: reservedPlaces.includes(number)
+                  }"
                 >
                   {{ number }}
                 </div>
