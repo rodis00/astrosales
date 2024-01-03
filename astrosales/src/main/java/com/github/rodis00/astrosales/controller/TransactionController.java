@@ -169,4 +169,20 @@ public class TransactionController {
                     .body(e.getErrorDetail());
         }
     }
+
+    @GetMapping("/user/{userId}/active")
+    public ResponseEntity<?> getTransactionsByUserIdAndDateOfFlightGrowerEqualToday(@PathVariable Integer userId) {
+        try {
+            User user = userService.getUserById(userId);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(transactionService.getTransactionByUserIdGreaterOrEqualToday(userId, LocalDateTime.now())
+                            .stream()
+                            .map(UserTransactionDto::from));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getErrorDetail());
+        }
+    }
 }
