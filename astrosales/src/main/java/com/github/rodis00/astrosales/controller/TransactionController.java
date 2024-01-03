@@ -5,10 +5,7 @@ import com.github.rodis00.astrosales.dto.TransactionDto;
 import com.github.rodis00.astrosales.dto.UserTransactionDto;
 import com.github.rodis00.astrosales.exception.TransactionNotFoundException;
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
-import com.github.rodis00.astrosales.model.Reservation;
-import com.github.rodis00.astrosales.model.Transaction;
-import com.github.rodis00.astrosales.model.User;
-import com.github.rodis00.astrosales.model.UserProfile;
+import com.github.rodis00.astrosales.model.*;
 import com.github.rodis00.astrosales.service.FlightService;
 import com.github.rodis00.astrosales.service.ReservationService;
 import com.github.rodis00.astrosales.service.TransactionService;
@@ -67,6 +64,14 @@ public class TransactionController {
                                 ));
                     } else {
                         transactionService.saveTransaction(newTransaction);
+                        Flight flight = flightService.getFlightById(transaction.getFlight().getId());
+                        flight.setAvailabilityOfPlaces(
+                                flight.getAvailabilityOfPlaces() - getTransactionTicketsCount(
+                                        newTransaction.getAmountOfTickets(),
+                                        newTransaction.getAmountOfTicketsVip()
+                                )
+                        );
+                        flightService.saveFlight(flight);
                         return ResponseEntity
                                 .status(HttpStatus.CREATED)
                                 .body(TransactionDto.from(newTransaction));
