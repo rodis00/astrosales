@@ -29,6 +29,11 @@ public class ReservationService implements ReservationServiceInterface {
     }
 
     @Override
+    public List<Reservation> getReservationByFlightId(Integer id) {
+        return reservationRepository.getReservationByTransaction_FlightId(id);
+    }
+
+    @Override
     public Long getCountOfReservedPlaces(Integer id) {
         return reservationRepository.countByTransactionId(id);
     }
