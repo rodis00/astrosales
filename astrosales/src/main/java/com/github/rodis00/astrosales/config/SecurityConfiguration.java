@@ -36,6 +36,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.DELETE, "/astrosales/api/v1/flights/**").hasRole(Role.ADMIN.name())
                                 .requestMatchers(HttpMethod.GET, "/astrosales/api/v1/flights/**").permitAll()
                                 .requestMatchers("/astrosales/api/v1/user-profiles/**").permitAll()
+                                .requestMatchers("astrosales/api/v1/transactions/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
