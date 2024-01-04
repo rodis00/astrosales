@@ -49,11 +49,15 @@
         </div>
       </div>
       <div class="image">
-        @if (flight.landingPlace.toLowerCase() == "moon") {
+        @switch (flight.landingPlace.toLowerCase()) { @case ("moon") {
         <img src="../../assets/images/moon.jpg" alt="moon image" />
-        } @else {
-        <img src="../../assets/images/unknown.jpg" alt="unknown" />
-        }
+        } @case ("mars") {
+        <img src="../../assets/images/mars.jpg" alt="mars image" />
+        } @case ("jowisz") {
+        <img src="../../assets/images/jowisz.jpg" alt="jowisz image" />
+        } @default {
+        <img src="../../assets/images/unknown.jpg" alt="planets image" />
+        } }
       </div>
     </div>
   </a>
