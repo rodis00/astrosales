@@ -5,6 +5,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { FlightsComponent } from './flights/flights.component';
 import { FlightComponent } from './flight/flight.component';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { AdminComponent } from './admin/admin.component';
+import { userGuard } from './guards/user/user.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,5 +14,9 @@ export const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'flights', component: FlightsComponent },
   { path: 'flight/:id', component: FlightComponent },
-  { path: 'account', component: AccountPageComponent },
+  {
+    path: 'account',
+    canActivate: [userGuard],
+    component: AccountPageComponent,
+  },
 ];
