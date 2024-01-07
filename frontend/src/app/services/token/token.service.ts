@@ -50,5 +50,6 @@ export class TokenService {
   public logOut(): void {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('tokenExpirationTime');
+    location.reload();
   }
 }
