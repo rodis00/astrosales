@@ -33,7 +33,7 @@ export class TokenService {
   ): { roles: string[]; id: string } | null {
     try {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      const userRoles = decodedToken.roles;
+      const userRoles = decodedToken.roles[0].authority;
       const userId = decodedToken.userId;
 
       return { roles: userRoles, id: userId };
