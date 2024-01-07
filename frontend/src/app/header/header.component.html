@@ -4,8 +4,11 @@
     <nav>
       <ul>
         <li><a routerLink="/flights">Loty</a></li>
-        @if (token != undefined) {
+        @if (isLoggedIn) { @if (isAdmin) {
+        <li><a routerLink="/admin">Panel</a></li>
+        } @else {
         <li><a routerLink="/account">Konto</a></li>
+        }
         <li><a href="#" (click)="logout()">Wyloguj</a></li>
         } @else {
         <li>

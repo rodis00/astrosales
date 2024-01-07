@@ -10,18 +10,22 @@ import { TokenService } from '../services/token/token.service';
   providers: [TokenService],
 })
 export class HeaderComponent {
-  public token: any = sessionStorage.getItem('token');
-
   userDetails: any = {};
+  isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private tokenService: TokenService) {
-    this.userDetails = tokenService.getRolesAndIdFromToken(this.token);
-    console.log(this.userDetails);
+    if (tokenService.isLogedIn()) {
+      this.isLoggedIn = true;
+      let token: any = sessionStorage.getItem('token');
+      this.userDetails = tokenService.getRolesAndIdFromToken(token);
+      if (token && this.userDetails.roles.includes('ROLE_ADMIN')) {
+        this.isAdmin = true;
+      }
+    }
   }
 
   public logout(): void {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('tokenExpirationTime');
-    location.reload();
+    this.tokenService.logOut();
   }
 }
