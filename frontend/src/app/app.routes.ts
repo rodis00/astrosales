@@ -7,6 +7,7 @@ import { FlightComponent } from './flight/flight.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { AdminComponent } from './admin/admin.component';
 import { userGuard } from './guards/user/user.guard';
+import { adminGuard } from './guards/admin/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,4 +20,5 @@ export const routes: Routes = [
     canActivate: [userGuard],
     component: AccountPageComponent,
   },
+  { path: 'admin', canActivate: [adminGuard], component: AdminComponent },
 ];
