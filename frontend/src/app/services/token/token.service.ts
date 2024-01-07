@@ -42,4 +42,13 @@ export class TokenService {
       return null;
     }
   }
+
+  public isLogedIn(): boolean {
+    return sessionStorage.getItem('token') !== null;
+  }
+
+  public logOut(): void {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('tokenExpirationTime');
+  }
 }
