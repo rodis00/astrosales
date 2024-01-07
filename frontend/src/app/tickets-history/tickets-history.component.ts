@@ -15,6 +15,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class TicketsHistoryComponent {
   tickets!: FlightTransaction[];
+  message: string = 'Brak historii zakupów.';
+
   private authToken: any = sessionStorage.getItem('token');
   private userDetails: any = {};
 

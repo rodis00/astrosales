@@ -10,4 +10,5 @@ import { FlightTransaction } from '../models/FlightTransaction';
 })
 export class TicketComponent {
   @Input() tickets!: FlightTransaction[];
+  @Input() message!: string;
 }

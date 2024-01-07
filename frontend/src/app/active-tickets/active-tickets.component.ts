@@ -15,6 +15,8 @@ import { TokenService } from '../services/token/token.service';
 })
 export class ActiveTicketsComponent {
   tickets!: FlightTransaction[];
+  message: string = 'Brak aktywnych biletów.';
+
   private authToken: any = sessionStorage.getItem('token');
   private userDetails: any = {};
 
