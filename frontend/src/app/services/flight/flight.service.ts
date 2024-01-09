@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Flight } from '../../models/Flight';
+import { Flight, FlightWithoutId } from '../../models/Flight';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -17,5 +17,13 @@ export class FlightService {
 
   public getFlightById(id: number): Observable<Flight> {
     return this.http.get<Flight>(`${this.apiUrl}/flights/${id}`);
+  }
+
+  public addFlight(flight: FlightWithoutId): Observable<any> {
+    return this.http.post<Flight>(`${this.apiUrl}/flights`, flight);
+  }
+
+  public getAllFlights(): Observable<Flight[]> {
+    return this.http.get<Flight[]>(`${this.apiUrl}/flights/all`);
   }
 }
