@@ -7,3 +7,12 @@ export interface Flight {
   ticketPriceVip: number;
   availabilityOfPlaces: number;
 }
+
+export interface FlightWithoutId {
+  dateOfFlight: string;
+  startingPlace: string;
+  landingPlace: string;
+  ticketPrice: string;
+  ticketPriceVip: string;
+  availabilityOfPlaces: string;
+}
