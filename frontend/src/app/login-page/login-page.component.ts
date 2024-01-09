@@ -23,7 +23,11 @@ export class LoginPageComponent {
     private authService: AuthService,
     private router: Router,
     private tokenService: TokenService
-  ) {}
+  ) {
+    if (tokenService.isLogedIn()) {
+      router.navigateByUrl('/');
+    }
+  }
 
   user: User = new User('', '');
   errorMessage: string = '';

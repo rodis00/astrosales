@@ -23,7 +23,11 @@ export class RegisterPageComponent {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router
-  ) {}
+  ) {
+    if (tokenService.isLogedIn()) {
+      router.navigateByUrl('/');
+    }
+  }
 
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
