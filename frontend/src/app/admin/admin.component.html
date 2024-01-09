@@ -1,1 +1,115 @@
-<p>admin works!</p>
+<div class="container">
+  <div class="main-header">
+    <h1>Edytuj loty</h1>
+  </div>
+  <div class="add-flight">
+    <form [formGroup]="flightForm" (ngSubmit)="handleSubmit()">
+      <div class="date">
+        <label for="dateOfFlight">Data lotu:</label>
+        <input
+          type="datetime-local"
+          id="dateOfFlight"
+          formControlName="dateOfFlight"
+        />
+      </div>
+
+      <div class="start">
+        <label for="startPlace">Miejsce Startu:</label>
+        <input
+          type="text"
+          id="startPlace"
+          placeholder="Jana Kołątaja 23, Gdańsk"
+          formControlName="startingPlace"
+        />
+      </div>
+
+      <div class="end">
+        <label for="landingPlace">Miejsce Lądowania:</label>
+        <input
+          type="text"
+          id="landingPlace"
+          placeholder="Jowisz, Mars, Księżyc"
+          formControlName="landingPlace"
+        />
+      </div>
+
+      <div class="price">
+        <label for="ticketPrice">Cena biletu Standard:</label>
+        <input
+          type="number"
+          id="ticketPrice"
+          placeholder="350,23"
+          formControlName="ticketPrice"
+        />
+      </div>
+
+      <div class="price-vip">
+        <label for="ticketPriceVip">Cena biletu Vip:</label>
+        <input
+          type="number"
+          id="ticketPriceVip"
+          placeholder="500"
+          formControlName="ticketPriceVip"
+        />
+      </div>
+
+      <div class="places">
+        <label for="availabilityOfPlaces">Liczba dostępnych miejsc:</label>
+        <input
+          type="number"
+          id="availabilityOfPlaces"
+          formControlName="availabilityOfPlaces"
+          placeholder="50"
+        />
+      </div>
+      <div class="submit">
+        <button
+          type="submit"
+          [disabled]="flightForm.invalid"
+          [class]="{ 'disabled-button': flightForm.invalid }"
+        >
+          Zapisz
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="dashboard">
+    <div class="header">
+      <div class="left">
+        <span>Data</span>
+        <span>Godzina</span>
+        <span>Miejsce Startu</span>
+        <span>Miejsce Lądowania</span>
+      </div>
+      <div class="right"></div>
+    </div>
+    @for (flight of flights; track flight.id) {
+    <div class="flight">
+      <div class="details">
+        <span>
+          {{ flight.dateOfFlight | date : "dd-mm-y" }}
+        </span>
+        <span>
+          {{ flight.dateOfFlight | date : "hh:mm" }}
+        </span>
+        <span>
+          {{ flight.startingPlace }}
+        </span>
+        <span>
+          {{ flight.landingPlace }}
+        </span>
+      </div>
+      <div class="buttons">
+        <div class="wrapper">
+          <div class="edit">
+            <span>Edytuj</span>
+          </div>
+          <div class="delete">
+            <span>Usuń</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
