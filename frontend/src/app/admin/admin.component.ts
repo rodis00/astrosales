@@ -62,6 +62,19 @@ export class AdminComponent {
     );
   }
 
+  public deleteFlight(flightId: number): void {
+    this.flightService.deleteFlightById(flightId).subscribe(
+      (response: void) => {
+        alert('Lot został usunięty.');
+        this.refreshPage();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        alert('Nastąpił problem podczas usuwania lotu.');
+      }
+    );
+  }
+
   private refreshPage(): void {
     setInterval(() => {
       location.reload();
