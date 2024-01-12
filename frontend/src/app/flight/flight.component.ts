@@ -4,11 +4,12 @@ import { Flight } from '../models/Flight';
 import { ActivatedRoute } from '@angular/router';
 import { ReservationService } from '../services/reservation/reservation.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-flight',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './flight.component.html',
   styleUrl: './flight.component.css',
   providers: [ReservationService],
@@ -33,7 +34,6 @@ export class FlightComponent {
 
   private getFlightById(id: number): void {
     this.flightService.getFlightById(id).subscribe((flight: Flight) => {
-      flight.dateOfFlight = new Date(flight.dateOfFlight);
       this.flight = flight;
     });
   }

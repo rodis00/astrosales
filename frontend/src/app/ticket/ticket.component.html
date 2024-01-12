@@ -2,23 +2,11 @@
 <div class="ticket">
   <div class="date">
     <img src="../../assets/images/calendar.svg" alt="calendar icon" />
-    {{ ticket.dateOfFlight.getFullYear() }}
-    - @if (ticket.dateOfFlight.getMonth() < 10) { 0{{
-      ticket.dateOfFlight.getMonth() + 1
-    }}
-    } @else {
-    {{ ticket.dateOfFlight.getMonth() + 1 }}
-    } - @if (ticket.dateOfFlight.getDate() < 10) { 0{{
-      ticket.dateOfFlight.getDate()
-    }}
-    } @else {
-    {{ ticket.dateOfFlight.getDate() }}
-    }
+    {{ ticket.dateOfFlight | date : "dd-mm-y" }}
   </div>
   <div class="time">
     <img src="../../assets/images/clock.svg" alt="clock icon" />
-    {{ ticket.dateOfFlight.getHours() }} :
-    {{ ticket.dateOfFlight.getMinutes() }}
+    {{ ticket.dateOfFlight | date : "hh:mm" }}
   </div>
   <div class="start-place">{{ ticket.startingPlace }}</div>
   <div class="end-place">{{ ticket.landingPlace }}</div>
