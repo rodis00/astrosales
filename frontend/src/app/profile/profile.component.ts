@@ -9,11 +9,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { PhonePipe } from '../custom-pipes/PhonePipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PhonePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   providers: [UserProfileService, TokenService],
