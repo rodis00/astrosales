@@ -1,16 +1,31 @@
 package com.github.rodis00.astrosales;
 
+import com.github.rodis00.astrosales.model.Role;
+import com.github.rodis00.astrosales.model.User;
+import com.github.rodis00.astrosales.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @SpringBootApplication
-public class AstrosalesApplication {
+public class AstrosalesApplication implements CommandLineRunner {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	private static Logger logger = LoggerFactory.getLogger(AstrosalesApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(AstrosalesApplication.class, args);
@@ -32,4 +47,18 @@ public class AstrosalesApplication {
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		Optional<User> adminAccount = userRepository.findByRole(Role.ADMIN);
+
+		if (adminAccount.isEmpty()) {
+			User admin = new User();
+			admin.setRole(Role.ADMIN);
+			admin.setEmail("admin@gmail.com");
+			admin.setPassword(new BCryptPasswordEncoder().encode("admin123"));
+			userRepository.save(admin);
+
+			logger.info("ADMIN ACCOUNT CREATED");
+		}
+	}
 }
