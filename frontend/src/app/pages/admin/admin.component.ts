@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Flight } from '../models/Flight';
-import { FlightService } from '../services/flight/flight.service';
+import { Flight } from '../../models/Flight';
+import { FlightService } from '../../services/flight/flight.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 

@@ -2,11 +2,11 @@
 <div class="ticket">
   <div class="date">
     <img src="../../assets/images/calendar.svg" alt="calendar icon" />
-    {{ ticket.dateOfFlight | date : "dd-mm-y" }}
+    {{ ticket.dateOfFlight | date : "dd-MM-y" }}
   </div>
   <div class="time">
     <img src="../../assets/images/clock.svg" alt="clock icon" />
-    {{ ticket.dateOfFlight | date : "hh:mm" }}
+    {{ ticket.dateOfFlight | date : "HH:mm" }}
   </div>
   <div class="start-place">{{ ticket.startingPlace }}</div>
   <div class="end-place">{{ ticket.landingPlace }}</div>

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { TicketComponent } from '../ticket/ticket.component';
-import { FlightTransaction } from '../models/FlightTransaction';
-import { FlightTransactionService } from '../services/flightTransaction/flight-transaction.service';
+import { FlightTransaction } from '../../models/FlightTransaction';
+import { FlightTransactionService } from '../../services/flightTransaction/flight-transaction.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TokenService } from '../services/token/token.service';
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-active-tickets',

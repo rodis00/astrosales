@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TicketComponent } from '../ticket/ticket.component';
-import { FlightTransaction } from '../models/FlightTransaction';
-import { TokenService } from '../services/token/token.service';
-import { FlightTransactionService } from '../services/flightTransaction/flight-transaction.service';
+import { FlightTransaction } from '../../models/FlightTransaction';
+import { TokenService } from '../../services/token/token.service';
+import { FlightTransactionService } from '../../services/flightTransaction/flight-transaction.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

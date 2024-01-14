@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TokenService } from '../services/token/token.service';
+import { TokenService } from '../../services/token/token.service';
 @Component({
   selector: 'app-header',
   standalone: true,

@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { FlightsComponent } from './flights/flights.component';
-import { FlightComponent } from './flight/flight.component';
-import { AccountPageComponent } from './account-page/account-page.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { FlightsComponent } from './pages/flights/flights.component';
+import { FlightComponent } from './pages/flight/flight.component';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { userGuard } from './guards/user/user.guard';
 import { adminGuard } from './guards/admin/admin.guard';
 

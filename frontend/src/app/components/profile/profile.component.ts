@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { UserProfileService } from '../services/userProfile/user-profile.service';
-import { TokenService } from '../services/token/token.service';
-import { UserProfile, UserProfileWithId } from '../models/UserProfile';
+import { UserProfileService } from '../../services/userProfile/user-profile.service';
+import { TokenService } from '../../services/token/token.service';
+import { UserProfile, UserProfileWithId } from '../../models/UserProfile';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   FormControl,
@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PhonePipe } from '../custom-pipes/PhonePipe';
+import { PhonePipe } from '../../custom-pipes/PhonePipe';
 
 @Component({
   selector: 'app-profile',

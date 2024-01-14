@@ -9,13 +9,13 @@
       <div class="content">
         <div class="date-of-flight">
           <div class="date">
-            <img src="../../assets/images/calendar.svg" alt="calendar icon" />
+            <img src="/assets/images/calendar.svg" alt="calendar icon" />
             <h2>
               {{ flight.dateOfFlight | date : "dd-MM-y" }}
             </h2>
           </div>
           <div class="time">
-            <img src="../../assets/images/clock.svg" alt="clock icon" />
+            <img src="/assets/images/clock.svg" alt="clock icon" />
             <h3>
               {{ flight.dateOfFlight | date : "HH:mm" }}
             </h3>
@@ -37,13 +37,13 @@
       </div>
       <div class="image">
         @switch (flight.landingPlace.toLowerCase()) { @case ("księżyc") {
-        <img src="../../assets/images/moon.jpg" alt="moon image" />
+        <img src="/assets/images/moon.jpg" alt="moon image" />
         } @case ("mars") {
-        <img src="../../assets/images/mars.jpg" alt="mars image" />
+        <img src="/assets/images/mars.jpg" alt="mars image" />
         } @case ("jowisz") {
-        <img src="../../assets/images/jupyter.jpg" alt="jupyter image" />
+        <img src="/assets/images/jupyter.jpg" alt="jupyter image" />
         } @default {
-        <img src="../../assets/images/unknown.jpg" alt="planets image" />
+        <img src="/assets/images/unknown.jpg" alt="planets image" />
         } }
       </div>
     </div>

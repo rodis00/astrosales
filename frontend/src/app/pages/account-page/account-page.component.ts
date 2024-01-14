@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ProfileComponent } from '../profile/profile.component';
-import { ActiveTicketsComponent } from '../active-tickets/active-tickets.component';
-import { TicketsHistoryComponent } from '../tickets-history/tickets-history.component';
+import { ProfileComponent } from '../../components/profile/profile.component';
+import { ActiveTicketsComponent } from '../../components/active-tickets/active-tickets.component';
+import { TicketsHistoryComponent } from '../../components/tickets-history/tickets-history.component';
 
 @Component({
   selector: 'app-account-page',

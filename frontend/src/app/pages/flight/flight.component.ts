@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FlightService } from '../services/flight/flight.service';
-import { Flight } from '../models/Flight';
+import { FlightService } from '../../services/flight/flight.service';
+import { Flight } from '../../models/Flight';
 import { ActivatedRoute } from '@angular/router';
-import { ReservationService } from '../services/reservation/reservation.service';
+import { ReservationService } from '../../services/reservation/reservation.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 

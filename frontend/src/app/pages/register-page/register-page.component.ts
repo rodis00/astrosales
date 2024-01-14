@@ -6,9 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { User } from '../models/User';
-import { AuthService } from '../services/auth/auth.service';
-import { TokenService } from '../services/token/token.service';
+import { User } from '../../models/User';
+import { AuthService } from '../../services/auth/auth.service';
+import { TokenService } from '../../services/token/token.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

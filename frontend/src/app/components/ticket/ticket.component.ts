@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FlightTransaction } from '../models/FlightTransaction';
+import { FlightTransaction } from '../../models/FlightTransaction';
 import { DatePipe } from '@angular/common';
 
 @Component({
