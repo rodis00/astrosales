@@ -13,54 +13,96 @@
         />
       </div>
 
-      <div class="start">
-        <label for="startPlace">Miejsce Startu:</label>
-        <input
-          type="text"
-          id="startPlace"
-          placeholder="Jana Kołątaja 23, Gdańsk"
-          formControlName="startingPlace"
-        />
-      </div>
-
-      <div class="end">
-        <label for="landingPlace">Miejsce Lądowania:</label>
-        <input
-          type="text"
-          id="landingPlace"
-          placeholder="Jowisz, Mars, Księżyc"
-          formControlName="landingPlace"
-        />
-      </div>
-
       <div class="price">
         <label for="ticketPrice">Cena biletu Standard:</label>
-        <input
-          type="number"
+        <select
+          name="ticketPrice"
           id="ticketPrice"
-          placeholder="350,23"
           formControlName="ticketPrice"
-        />
+        >
+          <option value="" hidden="hidden" selected="selected">
+            Wybierz...
+          </option>
+          <option value="180.50">150,50 zł</option>
+          <option value="260.18">260,18 zł</option>
+          <option value="350.99">350,99 zł</option>
+          <option value="450.80">450,80 zł</option>
+        </select>
+      </div>
+
+      <div class="start">
+        <label for="startPlace">Miejsce Startu:</label>
+        <select
+          name="startPlace"
+          id="startPlace"
+          formControlName="startingPlace"
+        >
+          <option value="" hidden="hidden" selected="selected">
+            Wybierz...
+          </option>
+          <option value="Jana Andersa 12, Wrocław">
+            Jana Andersa 12, Wrocław
+          </option>
+          <option value="Mikołaja Reja 32, Gdańsk">
+            Mikołaja Reja 32, Gdańsk
+          </option>
+          <option value="Tadeusza Nowaka 24, Wrocław">
+            Tadeusza Nowaka 24, Wrocław
+          </option>
+          <option value="Augusta Zygmunta 3, Kraków">
+            Augusta Zygmunta 3, Kraków
+          </option>
+          <option value="Mariana Krasica 34, Kraków">
+            Mariana Krasica 34, Kraków
+          </option>
+        </select>
       </div>
 
       <div class="price-vip">
         <label for="ticketPriceVip">Cena biletu Vip:</label>
-        <input
-          type="number"
+        <select
+          name="ticketPriceVip"
           id="ticketPriceVip"
-          placeholder="500"
           formControlName="ticketPriceVip"
-        />
+        >
+          <option value="" hidden="hidden" selected="selected">
+            Wybierz...
+          </option>
+          <option value="400.34">450,34 zł</option>
+          <option value="520.77">520,77 zł</option>
+          <option value="618.56">618,56 zł</option>
+          <option value="660.80">660,80 zł</option>
+        </select>
+      </div>
+
+      <div class="end">
+        <label for="landingPlace">Miejsce Lądowania:</label>
+        <select
+          name="landingPlace"
+          id="landingPlace"
+          formControlName="landingPlace"
+        >
+          <option value="" hidden="hidden" selected="selected">
+            Wybierz...
+          </option>
+          <option value="Jowisz">Jowisz</option>
+          <option value="Mars">Mars</option>
+          <option value="Księżyc">Księżyc</option>
+        </select>
       </div>
 
       <div class="places">
         <label for="availabilityOfPlaces">Liczba dostępnych miejsc:</label>
-        <input
-          type="number"
+        <select
+          name="availabilityOfPlaces"
           id="availabilityOfPlaces"
           formControlName="availabilityOfPlaces"
-          placeholder="50"
-        />
+        >
+          <option value="" selected="selected" hidden="hidden">
+            Wybierz...
+          </option>
+          <option value="50">50</option>
+        </select>
       </div>
       <div class="submit">
         <button
@@ -87,10 +129,10 @@
     <div class="flight">
       <div class="details">
         <span>
-          {{ flight.dateOfFlight | date : "dd-mm-y" }}
+          {{ flight.dateOfFlight | date : "dd-MM-y" }}
         </span>
         <span>
-          {{ flight.dateOfFlight | date : "hh:mm" }}
+          {{ flight.dateOfFlight | date : "HH:mm" }}
         </span>
         <span>
           {{ flight.startingPlace }}
