@@ -1,12 +1,14 @@
 package com.github.rodis00.astrosales.service;
 
 import com.github.rodis00.astrosales.exception.UserNotFoundException;
+import com.github.rodis00.astrosales.model.Role;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserServiceInterface{
@@ -72,5 +74,10 @@ public class UserService implements UserServiceInterface{
     @Override
     public Boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Optional<User> findByRole(Role role) {
+        return userRepository.findByRole(role);
     }
 }

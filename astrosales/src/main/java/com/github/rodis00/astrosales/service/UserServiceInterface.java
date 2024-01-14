@@ -1,8 +1,10 @@
 package com.github.rodis00.astrosales.service;
 
+import com.github.rodis00.astrosales.model.Role;
 import com.github.rodis00.astrosales.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserServiceInterface {
     User saveUser(User user);
@@ -13,4 +15,5 @@ public interface UserServiceInterface {
     void deleteUser(Integer id);
     User getUserByEmail(String email);
     Boolean existsByEmail(String email);
+    Optional<User> findByRole(Role role);
 }
