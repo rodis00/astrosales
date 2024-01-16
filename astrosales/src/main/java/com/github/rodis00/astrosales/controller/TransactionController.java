@@ -3,8 +3,6 @@ package com.github.rodis00.astrosales.controller;
 import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.TransactionDto;
 import com.github.rodis00.astrosales.dto.UserTransactionDto;
-import com.github.rodis00.astrosales.exception.TransactionNotFoundException;
-import com.github.rodis00.astrosales.exception.UserNotFoundException;
 import com.github.rodis00.astrosales.model.*;
 import com.github.rodis00.astrosales.service.FlightService;
 import com.github.rodis00.astrosales.service.ReservationService;
@@ -43,52 +41,46 @@ public class TransactionController {
 
     @PostMapping("")
     public ResponseEntity<?> saveTransaction(@RequestBody Transaction transaction) {
-        try {
-            User user = userService.getUserById(transaction.getUser().getId());
-            if (user != null && userProfileIsNotEmpty(user.getUserProfile())) {
-                Transaction newTransaction = buildTransactionFromRequest(transaction);
-                if (!isFlightDateAfterToday(newTransaction.getFlight().getDateOfFlight())) {
-                    return ResponseEntity
-                            .status(HttpStatus.BAD_REQUEST)
-                            .body(new ApiResponseDto(
-                                    FlightUtils.FLIGHT_DATE_IN_THE_PAST_CODE,
-                                    FlightUtils.FLIGHT_DATE_IN_THE_PAST_MESSAGE
-                            ));
-                } else {
-                    if (!isEnoughPlaces(newTransaction)) {
-                        return ResponseEntity
-                                .status(HttpStatus.BAD_REQUEST)
-                                .body(new ApiResponseDto(
-                                        FlightUtils.NO_AVAILABLE_PLACES_CODE,
-                                        FlightUtils.NO_AVAILABLE_PLACES_MESSAGE
-                                ));
-                    } else {
-                        transactionService.saveTransaction(newTransaction);
-                        Flight flight = flightService.getFlightById(transaction.getFlight().getId());
-                        flight.setAvailabilityOfPlaces(
-                                flight.getAvailabilityOfPlaces() - getTransactionTicketsCount(
-                                        newTransaction.getAmountOfTickets(),
-                                        newTransaction.getAmountOfTicketsVip()
-                                )
-                        );
-                        flightService.saveFlight(flight);
-                        return ResponseEntity
-                                .status(HttpStatus.CREATED)
-                                .body(TransactionDto.from(newTransaction));
-                    }
-                }
-            } else {
+        User user = userService.getUserById(transaction.getUser().getId());
+        if (user != null && userProfileIsNotEmpty(user.getUserProfile())) {
+            Transaction newTransaction = buildTransactionFromRequest(transaction);
+            if (!isFlightDateAfterToday(newTransaction.getFlight().getDateOfFlight())) {
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .body(new ApiResponseDto(
-                                UserProfileUtils.USER_PROFILE_EMPTY_CODE,
-                                UserProfileUtils.USER_PROFILE_EMPTY_MESSAGE
+                                FlightUtils.FLIGHT_DATE_IN_THE_PAST_CODE,
+                                FlightUtils.FLIGHT_DATE_IN_THE_PAST_MESSAGE
                         ));
+            } else {
+                if (!isEnoughPlaces(newTransaction)) {
+                    return ResponseEntity
+                            .status(HttpStatus.BAD_REQUEST)
+                            .body(new ApiResponseDto(
+                                    FlightUtils.NO_AVAILABLE_PLACES_CODE,
+                                    FlightUtils.NO_AVAILABLE_PLACES_MESSAGE
+                            ));
+                } else {
+                    transactionService.saveTransaction(newTransaction);
+                    Flight flight = flightService.getFlightById(transaction.getFlight().getId());
+                    flight.setAvailabilityOfPlaces(
+                            flight.getAvailabilityOfPlaces() - getTransactionTicketsCount(
+                                    newTransaction.getAmountOfTickets(),
+                                    newTransaction.getAmountOfTicketsVip()
+                            )
+                    );
+                    flightService.saveFlight(flight);
+                    return ResponseEntity
+                            .status(HttpStatus.CREATED)
+                            .body(TransactionDto.from(newTransaction));
+                }
             }
-        } catch (UserNotFoundException e) {
+        } else {
             return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponseDto(
+                            UserProfileUtils.USER_PROFILE_EMPTY_CODE,
+                            UserProfileUtils.USER_PROFILE_EMPTY_MESSAGE
+                    ));
         }
     }
 
@@ -147,47 +139,29 @@ public class TransactionController {
 
     @GetMapping("{id}")
     public ResponseEntity<?> getTransactionById(@PathVariable Integer id) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(TransactionDto
-                            .from(transactionService.getTransactionById(id)));
-        } catch (TransactionNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetails());
-        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(TransactionDto
+                        .from(transactionService.getTransactionById(id)));
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getTransactionsByUserId(@PathVariable Integer userId) {
-        try {
-            User user = userService.getUserById(userId);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(transactionService.getTransactionByUserId(userId)
-                            .stream()
-                            .map(UserTransactionDto::from));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
-        }
+        User user = userService.getUserById(userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(transactionService.getTransactionByUserId(userId)
+                        .stream()
+                        .map(UserTransactionDto::from));
     }
 
     @GetMapping("/user/{userId}/active")
     public ResponseEntity<?> getTransactionsByUserIdAndDateOfFlightGrowerEqualToday(@PathVariable Integer userId) {
-        try {
-            User user = userService.getUserById(userId);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(transactionService.getTransactionByUserIdGreaterOrEqualToday(userId, LocalDateTime.now())
-                            .stream()
-                            .map(UserTransactionDto::from));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
-        }
+        User user = userService.getUserById(userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(transactionService.getTransactionByUserIdGreaterOrEqualToday(userId, LocalDateTime.now())
+                        .stream()
+                        .map(UserTransactionDto::from));
     }
 }

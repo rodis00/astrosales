@@ -1,13 +1,7 @@
 package com.github.rodis00.astrosales.auth;
 
-import com.github.rodis00.astrosales.dto.ApiResponseDto;
-import com.github.rodis00.astrosales.model.User;
-import com.github.rodis00.astrosales.service.UserService;
-import com.github.rodis00.astrosales.utils.UserUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,53 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("astrosales/api/v1/auth")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
-        if (!userService.existsByEmail(request.getEmail()))
-            return ResponseEntity.ok(authenticationService.register(request));
-        else
-            return userExistsResponse();
+        return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/register-admin-user")
     public ResponseEntity<?> registerAdminUser(@RequestBody RegisterRequest request) {
-        if (!userService.existsByEmail(request.getEmail()))
-            return ResponseEntity.ok(authenticationService.registerAdminUser(request));
-        else
-            return userExistsResponse();
-    }
-
-    private ResponseEntity<ApiResponseDto> userExistsResponse() {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(new ApiResponseDto(
-                        UserUtils.USER_EXISTS_CODE,
-                        UserUtils.USER_EXISTS_MESSAGE
-                ));
+        return ResponseEntity.ok(authenticationService.registerAdminUser(request));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authentication(@RequestBody AuthenticationRequest request) {
-        if (!userService.existsByEmail(request.getEmail()))
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(new ApiResponseDto(
-                            UserUtils.USER_NOT_FOUND_CODE,
-                            UserUtils.USER_NOT_FOUND_MESSAGE
-                    ));
-        else {
-            User user = userService.getUserByEmail(request.getEmail());
-            if (!passwordEncoder.matches(request.getPassword(), user.getPassword()))
-                return ResponseEntity
-                        .status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponseDto(
-                                UserUtils.INCORRECT_PASSWORD_CODE,
-                                UserUtils.INCORRECT_PASSWORD_MESSAGE
-                        ));
-            else
-               return ResponseEntity.ok(authenticationService.authenticate(request));
-        }
+        return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }

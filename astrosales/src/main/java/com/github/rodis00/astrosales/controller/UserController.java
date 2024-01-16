@@ -2,7 +2,6 @@ package com.github.rodis00.astrosales.controller;
 
 import com.github.rodis00.astrosales.dto.ApiResponseDto;
 import com.github.rodis00.astrosales.dto.UserDto;
-import com.github.rodis00.astrosales.exception.UserNotFoundException;
 import com.github.rodis00.astrosales.model.Transaction;
 import com.github.rodis00.astrosales.model.User;
 import com.github.rodis00.astrosales.model.UserProfile;
@@ -67,60 +66,38 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Integer id) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(UserDto.from(userService.getUserById(id)));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
-        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(UserDto.from(userService.getUserById(id)));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody User user) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(UserDto.from(userService.updateUser(id, user)));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
-        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(UserDto.from(userService.updateUser(id, user)));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> patchUpdateUser(@PathVariable Integer id, @RequestBody User user) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(UserDto.from(userService.patchUpdateUser(id, user)));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
-        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(UserDto.from(userService.patchUpdateUser(id, user)));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
-        try {
-            List<Transaction> transactions = transactionService.getTransactionByUserId(id);
-            if (!transactions.isEmpty()) {
-                for (Transaction t : transactions)
-                    t.setUser(null);
-                transactionService.saveAllTransactions(transactions);
-            }
-            userService.deleteUser(id);
-            return ResponseEntity
-                    .status(HttpStatus.NO_CONTENT)
-                    .build();
-        } catch (UserNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getErrorDetail());
+        List<Transaction> transactions = transactionService.getTransactionByUserId(id);
+        if (!transactions.isEmpty()) {
+            for (Transaction t : transactions)
+                t.setUser(null);
+            transactionService.saveAllTransactions(transactions);
         }
+        userService.deleteUser(id);
+
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
+
     }
 }
