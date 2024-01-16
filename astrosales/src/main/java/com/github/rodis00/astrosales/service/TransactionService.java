@@ -26,7 +26,7 @@ public class TransactionService implements TransactionServiceInterface {
     @Override
     public Transaction getTransactionById(Integer id) {
         return transactionRepository.findById(id)
-                .orElseThrow(() -> new TransactionNotFoundException(id));
+                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found."));
     }
 
     @Override

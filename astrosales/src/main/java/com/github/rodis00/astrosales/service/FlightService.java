@@ -27,7 +27,7 @@ public class FlightService implements FlightServiceInterface {
     @Override
     public Flight getFlightById(Integer id) {
         return flightRepository.findById(id)
-                .orElseThrow(() -> new FlightNotFoundException(id));
+                .orElseThrow(() -> new FlightNotFoundException("Flight not found."));
     }
 
     @Override

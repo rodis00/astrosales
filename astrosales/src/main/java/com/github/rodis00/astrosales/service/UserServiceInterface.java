@@ -13,7 +13,7 @@ public interface UserServiceInterface {
     User updateUser(Integer id, User user);
     User patchUpdateUser(Integer id, User user);
     void deleteUser(Integer id);
-    User getUserByEmail(String email);
+    User findByEmail(String email);
     Boolean existsByEmail(String email);
     Optional<User> findByRole(Role role);
 }

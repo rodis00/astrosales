@@ -25,7 +25,7 @@ public class ReservationService implements ReservationServiceInterface {
     @Override
     public Reservation getReservationById(Integer id) {
         return reservationRepository.findById(id)
-                .orElseThrow(() -> new ReservationNotFoundException(id));
+                .orElseThrow(() -> new ReservationNotFoundException("Reservation not found"));
     }
 
     @Override

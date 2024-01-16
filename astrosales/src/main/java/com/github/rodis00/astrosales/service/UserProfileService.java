@@ -25,7 +25,7 @@ public class UserProfileService implements UserProfileServiceInterface{
     @Override
     public UserProfile getUserProfileById(Integer id) {
         return userProfileRepository.findById(id)
-                .orElseThrow(() -> new UserProfileNotFoundException(id));
+                .orElseThrow(() -> new UserProfileNotFoundException("User profile not found."));
     }
 
     @Override
