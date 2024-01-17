@@ -56,7 +56,7 @@ export class RegisterPageComponent {
       },
       (error: HttpErrorResponse) => {
         console.log(error);
-        this.errorMessage = error.error.responseMessage;
+        this.errorMessage = error.error.detail;
       }
     );
   }
