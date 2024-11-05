@@ -1,13 +1,13 @@
 package com.github.rodis00.astrosales.auth;
 
-import com.github.rodis00.astrosales.exception.InvalidPasswordException;
-import com.github.rodis00.astrosales.exception.UserExistsException;
-import com.github.rodis00.astrosales.model.Role;
-import com.github.rodis00.astrosales.model.User;
-import com.github.rodis00.astrosales.model.UserProfile;
+import com.github.rodis00.astrosales.auth.exception.InvalidPasswordException;
+import com.github.rodis00.astrosales.auth.exception.UserExistsException;
+import com.github.rodis00.astrosales.user.entity.Role;
+import com.github.rodis00.astrosales.user.entity.User;
+import com.github.rodis00.astrosales.userProfile.entity.UserProfile;
 import com.github.rodis00.astrosales.config.JwtService;
-import com.github.rodis00.astrosales.repository.UserRepository;
-import com.github.rodis00.astrosales.service.UserService;
+import com.github.rodis00.astrosales.user.UserRepository;
+import com.github.rodis00.astrosales.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

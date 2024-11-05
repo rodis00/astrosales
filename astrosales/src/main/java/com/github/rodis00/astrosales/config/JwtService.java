@@ -1,6 +1,6 @@
 package com.github.rodis00.astrosales.config;
 
-import com.github.rodis00.astrosales.model.User;
+import com.github.rodis00.astrosales.user.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

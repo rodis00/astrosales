@@ -1,6 +1,6 @@
 package com.github.rodis00.astrosales.config;
 
-import com.github.rodis00.astrosales.repository.UserRepository;
+import com.github.rodis00.astrosales.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
 package com.github.rodis00.astrosales;
 
-import com.github.rodis00.astrosales.model.Role;
-import com.github.rodis00.astrosales.model.User;
-import com.github.rodis00.astrosales.repository.UserRepository;
+import com.github.rodis00.astrosales.user.entity.Role;
+import com.github.rodis00.astrosales.user.entity.User;
+import com.github.rodis00.astrosales.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
