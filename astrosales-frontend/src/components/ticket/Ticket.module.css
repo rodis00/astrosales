@@ -1,0 +1,44 @@
+.ticket {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 1.5rem lightgray;
+  padding: 1.5rem;
+}
+
+.date,
+.time,
+.startPlace,
+.endPlace {
+  width: 50%;
+  text-align: center;
+}
+
+.date,
+.time {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.startPlace,
+.endPlace {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.ticket:hover {
+  background-color: whitesmoke;
+  box-shadow: 0 0 0.5rem black;
+  cursor: pointer;
+}
+
+.noTickets {
+  margin-top: 4rem;
+  margin-left: 5rem;
+  font-size: 2rem;
+}

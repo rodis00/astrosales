@@ -1,0 +1,132 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container a {
+  text-decoration: none;
+  color: black;
+}
+
+.mainHeader {
+  background-color: rgb(22, 8, 145);
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+}
+
+.mainHeader h1 {
+  font-size: 2.5rem;
+  color: whitesmoke;
+  font-weight: 400;
+}
+
+.container h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.contentContainer {
+  min-width: 980px;
+  max-width: 980px;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 45%;
+}
+
+.content {
+  width: 55%;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  width: 100%;
+  height: 310px;
+  border-radius: 0 1rem 1rem 0;
+  object-fit: cover;
+}
+
+.content {
+  background-color: whitesmoke;
+  border-radius: 1rem 0 0 1rem;
+  padding: 2.2rem 0;
+}
+
+.content .dateOfFlight {
+  text-align: center;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dateOfFlight .date,
+.dateOfFlight .time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dateOfFlight .date box-icon,
+.dateOfFlight .time box-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  vertical-align: middle;
+}
+
+.content .travelTarget {
+  display: flex;
+  justify-content: space-around;
+}
+
+.startPlace,
+.endPlace {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 1rem;
+}
+
+.startPlace span,
+.endPlace span {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.startPlace h3,
+.endPlace h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.availablePlaces {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 1.5rem;
+}
+
+.availablePlaces span {
+  font-weight: bold;
+}
+
+.availablePlaces::before {
+  content: "Liczba miejsc: ";
+  font-size: 1.5rem;
+}

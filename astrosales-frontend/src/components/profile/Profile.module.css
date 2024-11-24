@@ -1,0 +1,60 @@
+.container {
+  width: 50%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+form input {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: whitesmoke;
+  outline: 1px solid lightgray;
+}
+
+form input:focus {
+  background-color: rgb(197, 196, 196);
+  outline: 1px solid black;
+}
+
+button {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  background-color: rgb(22, 8, 145);
+  color: whitesmoke;
+  font-weight: 500;
+  transition: all 0.5s;
+  border: none;
+  height: 2.5rem;
+}
+
+button:hover {
+  background-color: rgb(9, 83, 243);
+  cursor: pointer;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.disabledButton:hover {
+  opacity: 0.5 !important;
+  background-color: rgb(22, 8, 145) !important;
+  cursor: default !important;
+}

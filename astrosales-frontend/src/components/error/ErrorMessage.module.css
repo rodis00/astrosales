@@ -1,0 +1,16 @@
+.errorMessage {
+  margin: 5rem auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  width: 80%;
+  font-weight: bold;
+  color: red;
+}
+
+.errorMessage box-icon {
+  height: 3.5rem;
+  width: 3.5rem;
+}

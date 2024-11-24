@@ -1,0 +1,124 @@
+.aboutUs {
+  width: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.image {
+  width: 35rem;
+  height: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  width: 80%;
+  height: 60%;
+}
+
+.content {
+  width: 35rem;
+  height: 50rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content p {
+  font-size: 2.3rem;
+  padding: 1rem;
+}
+
+.content span {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container1 .content span a {
+  text-decoration: none;
+  background-color: rgb(22, 8, 145);
+  color: whitesmoke;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 25px;
+  width: 9rem;
+  transition: all 0.8s;
+}
+
+.container1 .content span a:hover {
+  background-color: rgb(19, 92, 202);
+}
+
+.ourShips {
+  width: 100%;
+  background-image: url("/src/assets/images/background.png");
+}
+
+.container2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.container2 .content p {
+  color: whitesmoke;
+}
+
+.container2 .content,
+.container2 img {
+  width: 35rem;
+  height: 50rem;
+}
+
+@media screen and (max-width: 768px) {
+  img,
+  .content {
+    width: 60%;
+    height: 60%;
+  }
+
+  .container1 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container1 .content p,
+  .container1 .content span,
+  .container2 .content p {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  img,
+  .content {
+    width: 60%;
+    height: 60%;
+  }
+
+  .container1 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container1 .content p,
+  .container1 .content span,
+  .container2 .content p {
+    font-size: 2.5rem;
+  }
+}
