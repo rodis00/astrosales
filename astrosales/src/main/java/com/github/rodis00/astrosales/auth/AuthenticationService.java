@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -70,5 +72,16 @@ public class AuthenticationService {
         else
             throw new InvalidPasswordException("Invalid password.");
 
+    }
+
+    public List<String> getAuthorities(String authorizationHeader) {
+        String token = authorizationHeader.substring(7);
+        String username = jwtService.extractClaim(token, claims -> claims.getSubject());
+        User user = userService.findByEmail(username);
+
+        return user.getAuthorities()
+                .stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
+                .toList();
     }
 }
