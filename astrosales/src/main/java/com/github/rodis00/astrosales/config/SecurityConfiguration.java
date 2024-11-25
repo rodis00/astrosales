@@ -55,7 +55,8 @@ public class SecurityConfiguration {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(List.of(
                 "http://localhost:4200",
-                "http://localhost:3000"
+                "http://localhost:3000",
+                "https://astrosales.vercel.app/"
         ));
         corsConfig.setAllowCredentials(true);
         corsConfig.setAllowedHeaders(List.of(

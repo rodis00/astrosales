@@ -2,7 +2,7 @@ import TokenService from "../token/TokenService";
 
 class ReservationService {
   constructor() {
-    this.apiUrl = "http://localhost:8080/astrosales/api/v1";
+    this.apiUrl = process.env.REACT_APP_API_URL;
     this.tokenService = new TokenService();
   }
 
