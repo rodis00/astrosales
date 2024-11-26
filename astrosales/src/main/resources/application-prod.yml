@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_HOST}:${PROD_PORT}/${PROD_DB_NAME}
+    username: ${PROD_DB_USER}
+    password: ${PROD_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+jwt:
+  secret: ${JWT_SECRET}

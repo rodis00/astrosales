@@ -75,20 +75,20 @@ public class DataLoader implements CommandLineRunner {
             flight.setAvailabilityOfPlaces(50);
 
             Flight flight2 = new Flight();
-            flight.setDateOfFlight(LocalDateTime.of(2028, 12, 4, 12, 24));
-            flight.setStartingPlace("Warsaw");
-            flight.setLandingPlace("Mars");
-            flight.setTicketPrice(150);
-            flight.setTicketPriceVip(250);
-            flight.setAvailabilityOfPlaces(50);
+            flight2.setDateOfFlight(LocalDateTime.of(2028, 12, 4, 12, 24));
+            flight2.setStartingPlace("Warsaw");
+            flight2.setLandingPlace("Mars");
+            flight2.setTicketPrice(150);
+            flight2.setTicketPriceVip(250);
+            flight2.setAvailabilityOfPlaces(50);
 
             Flight flight3 = new Flight();
-            flight.setDateOfFlight(LocalDateTime.of(2030, 5, 15, 18, 18));
-            flight.setStartingPlace("Lublin");
-            flight.setLandingPlace("Jowisz");
-            flight.setTicketPrice(200);
-            flight.setTicketPriceVip(300);
-            flight.setAvailabilityOfPlaces(50);
+            flight3.setDateOfFlight(LocalDateTime.of(2030, 5, 15, 18, 18));
+            flight3.setStartingPlace("Lublin");
+            flight3.setLandingPlace("Jowisz");
+            flight3.setTicketPrice(200);
+            flight3.setTicketPriceVip(300);
+            flight3.setAvailabilityOfPlaces(50);
 
             flightRepository.saveAll(List.of(flight, flight2, flight3));
         }
