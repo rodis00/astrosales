@@ -1,14 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../components/auth-context/AuthContext";
+import AuthService from "../../services/auth/AuthService";
 import styles from "./RegisterPage.module.css";
 
 const RegisterPage = () => {
+  const authService = new AuthService();
+
   const [registerForm, setRegisterForm] = useState({ email: "", password: "" });
   const [formValid, setFormValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(registerForm);
+    authService
+      .register(registerForm)
+      .then((res) => {
+        if (res.status == 400) {
+          setErrorMessage(res.detail);
+          return;
+        }
+        alert("Konto utworzone pomyślnie.");
+        login(res.token);
+        console.log("success");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const validateForm = () => {
@@ -24,6 +46,7 @@ const RegisterPage = () => {
     const { name, value } = event.target;
     setRegisterForm({ ...registerForm, [name]: value });
     validateForm();
+    setErrorMessage("");
   };
 
   return (
@@ -45,6 +68,7 @@ const RegisterPage = () => {
           onChange={handleChange}
           placeholder="Hasło"
         />
+        <p className={styles.errorBox}>{errorMessage}</p>
         <button
           type="submit"
           className={!formValid ? styles.disabledButton : ""}

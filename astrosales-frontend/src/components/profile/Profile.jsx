@@ -15,6 +15,8 @@ const Profile = ({ userId }) => {
     phoneNumber: "",
   });
 
+  const noDataInfo = "Brak danych";
+
   useEffect(() => {
     const getUserProfile = () => {
       setIsLoading(true);
@@ -77,7 +79,7 @@ const Profile = ({ userId }) => {
           id="firstName"
           value={profileForm.firstName}
           onChange={handleChange}
-          placeholder={userProfile.firstName}
+          placeholder={userProfile.firstName || noDataInfo}
         />
 
         <label htmlFor="lastName">Nazwisko:</label>
@@ -86,7 +88,7 @@ const Profile = ({ userId }) => {
           id="lastName"
           value={profileForm.lastName}
           onChange={handleChange}
-          placeholder={userProfile.lastName}
+          placeholder={userProfile.lastName || noDataInfo}
         />
 
         <label htmlFor="phoneNumber">Telefon:</label>
@@ -95,7 +97,7 @@ const Profile = ({ userId }) => {
           id="phoneNumber"
           value={profileForm.phoneNumber}
           onChange={handleChange}
-          placeholder={userProfile.phoneNumber}
+          placeholder={userProfile.phoneNumber || noDataInfo}
         />
 
         <button type="submit">Zapisz</button>

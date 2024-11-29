@@ -18,6 +18,17 @@ class AuthService {
     return res.json();
   }
 
+  async register(user) {
+    const res = await fetch(`${this.apiUrl}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    return res.json();
+  }
+
   async getAuthorities() {
     const res = await fetch(`${this.apiUrl}/auth/authorities`, {
       method: "GET",
