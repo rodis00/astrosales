@@ -1,19 +1,25 @@
+import { jwtDecode } from "jwt-decode";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ErrorMessage from "../../components/error/ErrorMessage";
 import Loader from "../../components/loader/Loader";
 import NotFound from "../../components/not-found/NotFound";
 import FlightService from "../../services/flight/FlightService";
 import ReservationService from "../../services/reservation/ReservationService";
+import TokenService from "../../services/token/TokenService";
+import TransactionService from "../../services/transaction/TransactionService";
 import style from "./FlightDetail.module.css";
 
 const FlightDetailPage = () => {
   const flightService = new FlightService();
   const reservationService = new ReservationService();
+  const tokenService = new TokenService();
+  const transactionService = new TransactionService();
 
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const { flightId } = useParams();
+  const navigate = useNavigate();
 
   const [flight, setFlight] = useState(null);
   const [reservedPlaces, setReservedPlaces] = useState([]);
@@ -64,6 +70,39 @@ const FlightDetailPage = () => {
           : [...prevChoosenPlaces, place]
       );
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const reservations = choosenPlaces.map((place) => ({
+      sector: place <= 20 ? "VIP" : "STANDARD",
+      place,
+    }));
+
+    const transaction = {
+      user: { id: jwtDecode(tokenService.getToken()).id },
+      flight: { id: parseInt(flightId) },
+      amountOfTickets: reservations.filter((p) => p.sector == "STANDARD")
+        .length,
+      amountOfTicketsVip: reservations.filter((p) => p.sector == "VIP").length,
+      reservations,
+    };
+
+    transactionService
+      .saveTransaction(transaction)
+      .then((res) => {
+        if (res.responseCode === "001") {
+          alert(res.responseMessage);
+          navigate("/account");
+          return;
+        }
+        alert("Miejsca zostały zarezerwowane.");
+        navigate("/account");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   function getRange(start, end) {
@@ -197,10 +236,7 @@ const FlightDetailPage = () => {
                       ))}
                     </div>
                     <div className={style.continueButton}>
-                      <Link
-                        onClick={() => alert("Method not implemented yet")}
-                        to={"#"}
-                      >
+                      <Link onClick={handleSubmit} to={"#"}>
                         Wybierz
                       </Link>
                     </div>

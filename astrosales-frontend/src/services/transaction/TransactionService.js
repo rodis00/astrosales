@@ -30,6 +30,18 @@ class TransactionService {
     });
     return res.json();
   }
+
+  async saveTransaction(transaction) {
+    const res = await fetch(`${this.apiUrl}/transactions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.tokenService.getToken()}`,
+      },
+      body: JSON.stringify(transaction),
+    });
+    return res.json();
+  }
 }
 
 export default TransactionService;

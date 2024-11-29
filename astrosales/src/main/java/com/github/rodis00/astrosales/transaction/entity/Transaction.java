@@ -5,6 +5,7 @@ import com.github.rodis00.astrosales.reservation.entity.Reservation;
 import com.github.rodis00.astrosales.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Transaction {
     @GeneratedValue
     private Integer id;
 
+    @CreationTimestamp
     private LocalDateTime dateOfTransaction;
 
     @ManyToOne

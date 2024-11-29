@@ -27,8 +27,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Optional<User> adminAccount = userRepository.findByRole(Role.ADMIN);
-        Optional<User> userAccount = userRepository.findByRole(Role.USER);
+        Optional<User> adminAccount = userRepository.findByEmail("admin@gmail.com");
+        Optional<User> userAccount = userRepository.findByEmail("user@gmail.com");
         List<Flight> flights = flightRepository.findAll();
 
         if (adminAccount.isEmpty()) {
